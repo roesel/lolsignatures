@@ -1,0 +1,27 @@
+/* CSS file */
+body {
+  font-family:Tahoma;
+}
+#wrapper {
+  width:750px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+#result {
+  text-align:center;
+}
+
+#form {
+  text-align:center;
+}
+
+#url {
+  line-height:2em;
+  font-size:1.3em;
+}
+
+#footer {
+  font-size:0.8em;
+  text-align:center;
+}
