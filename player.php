@@ -46,9 +46,9 @@ class Player
     /*
       Gets the proper name and ID of a player under a specified name.
     */
-    function loadPlayer($name, $region) {
+function loadPlayer($name, $region) {
         // using name given to script - to get player instance
-        $addr = 'http://prod.api.pvp.net/api/lol/'.$region.'/v1.2/summoner/by-name/'.$name.'?api_key='.API_KEY;
+        $addr = 'http://prod.api.pvp.net/api/lol/'.$region.'/v1.3/summoner/by-name/'.$name.'?api_key='.API_KEY;
         
         $data = $this->getData($addr);
         
@@ -56,11 +56,11 @@ class Player
         $j = json_decode($data, True);
         
         // get ID and proper name
-        $this->id = $j["id"];
-        $this->name = $j["name"];
+        $this->id = $j[strtolower($name)]["id"];
+        $this->name = $j[strtolower($name)]["name"];
         $this->region = $region;
     }
-    
+
     function loadRankedBasic() {
         // get ranked stats by ID - league, division name, ...
         $id = $this->id;
