@@ -64,7 +64,7 @@ function loadPlayer($name, $region) {
     function loadRankedBasic() {
         // get ranked stats by ID - league, division name, ...
         $id = $this->id;
-        $addr = 'http://prod.api.pvp.net/api/lol/'.$this->region.'/v2.2/league/by-summoner/'.$id.'?api_key='.API_KEY;
+        $addr = 'http://prod.api.pvp.net/api/lol/'.$this->region.'/v2.3/league/by-summoner/'.$id.'?api_key='.API_KEY;
         
         $data = $this->getData($addr);
         
@@ -72,15 +72,17 @@ function loadPlayer($name, $region) {
         
         $this->rank_roman = 0;
         $this->lp = 0;
-        foreach($j[$id]["entries"] as $num) {
+
+        foreach($j[0]["entries"] as $num) {
             if ($num["playerOrTeamId"]==$id){
                 $this->rank_roman = $num["rank"];
                 $this->lp = $num["leaguePoints"];
+				$this->rank = $this->r2a($this->rank_roman);
+				$this->league = $num["leagueName"];
+				$this->tier = $num["tier"];
             }
         }
-        $this->rank = $this->r2a($this->rank_roman);
-        $this->league = $j[$id]["name"];
-        $this->tier = $j[$id]["tier"];
+        
     }
     
     function loadRankedStats() {
@@ -93,9 +95,11 @@ function loadPlayer($name, $region) {
         
         $j = json_decode($data, True);
         
-		// tady je potřeba proforovat celý pole a najít "Combined" - #ihateriot
-        $combined=end($j["champions"]);
-        
+		foreach ($j["champions"] as $champion) {
+			if ($champion["name"]=="Combined") {
+				$combined = $champion;
+			}
+		}        
         $s = $combined["stats"];
         
         $stats = array();
