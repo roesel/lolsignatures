@@ -43,6 +43,12 @@ function remoteFileExists($url) {
 include_once("secrets/apikey.secret.php");
 include_once("secrets/const.secret.php");
 
+if (isset($_GET["debug"])) {
+    $debug = True;
+} else {
+    $debug = False;
+}
+
 /* ---------------------------------------------------------------------------*/
 
 if (isset($_GET["region"]) && isset($_GET["name"])){
@@ -116,6 +122,16 @@ $lp = $p->lp;
 
 // stats
 $stats = $p->stats;
+
+if ($debug) {
+    print("<br/>id = ".$id);
+    print("<br/>name = ".$name);
+    print("<br/>league = ".$league);
+    print("<br/>tier = ".$tier);
+    print("<br/>rank = ".$rank);
+    print("<br/>rank_roman = ".$rank_roman);
+    print("<br/>lp = ".$lp);
+}
 
 /* -------------------------------------------------------------------------- */
 
@@ -197,7 +213,6 @@ if ($show_image) {
         imagealphablending($flag, 0);
         imagesavealpha($flag, 1);
         imagepng($flag, $local_path_meds);
-        
     }
   
   imagealphablending($flag, 0);
@@ -260,9 +275,13 @@ if ($show_image) {
   // cache generated image
   imagepng($mask, $file);
   
-  Header("Content-type: image/png");                      // Server caching
-  Header("Cache-Control: max-age=".BROWSER_CACHE);       // Browser caching
-  imagepng($mask);
+  if (!$debug) {
+    Header("Content-type: image/png");                      // Server caching
+    Header("Cache-Control: max-age=".BROWSER_CACHE);       // Browser caching
+    imagepng($mask);
+  } else {
+    print("<br/>I should dump image...");
+  }
   
   imagedestroy($mask);
   imagedestroy($flag);
