@@ -47,8 +47,10 @@ class Player
       Gets the proper name and ID of a player under a specified name.
     */
 function loadPlayer($name, $region) {
+        $this->region = $region;
+        
         // using name given to script - to get player instance
-        $addr = 'http://prod.api.pvp.net/api/lol/'.$region.'/v1.3/summoner/by-name/'.$name.'?api_key='.API_KEY;
+        $addr = 'http://'.$this->region.'.api.pvp.net/api/lol/'.$region.'/v1.4/summoner/by-name/'.$name.'?api_key='.API_KEY;
         
         $data = $this->getData($addr);
         
@@ -56,15 +58,16 @@ function loadPlayer($name, $region) {
         $j = json_decode($data, True);
         
         // get ID and proper name
-        $this->id = $j[strtolower($name)]["id"];
         $this->name = $j[strtolower($name)]["name"];
-        $this->region = $region;
+        $this->id = $j[strtolower($name)]["id"];
+        
     }
 
     function loadRankedBasic() {
         // get ranked stats by ID - league, division name, ...
         $id = $this->id;
-        $addr = 'http://prod.api.pvp.net/api/lol/'.$this->region.'/v2.3/league/by-summoner/'.$id.'?api_key='.API_KEY;
+        
+        $addr = 'http://'.$this->region.'.api.pvp.net/api/lol/'.$this->region.'/v2.5/league/by-summoner/'.$id.'?api_key='.API_KEY;
         
         $data = $this->getData($addr);
         
@@ -72,14 +75,18 @@ function loadPlayer($name, $region) {
         
         $this->rank_roman = 0;
         $this->lp = 0;
-
-        foreach($j[0]["entries"] as $num) {
-            if ($num["playerOrTeamId"]==$id){
-                $this->rank_roman = $num["rank"];
-                $this->lp = $num["leaguePoints"];
-				$this->rank = $this->r2a($this->rank_roman);
-				$this->league = $num["leagueName"];
-				$this->tier = $num["tier"];
+        foreach($j[strval($this->id)] as $table) {
+            if ($table["queue"] == "RANKED_SOLO_5x5") {
+                $this->league = $table["name"];
+                $this->tier = $table["tier"];
+                
+                foreach($table["entries"] as $num) {
+                    if ($num["playerOrTeamId"]==$id){
+                        $this->rank_roman = $num["division"];
+                        $this->lp = $num["leaguePoints"];
+                        $this->rank = $this->r2a($this->rank_roman);
+                    }
+                }
             }
         }
         
@@ -89,14 +96,14 @@ function loadPlayer($name, $region) {
         $id = $this->id;
         
         // get detailed ranked stats by ID
-        $addr = 'http://prod.api.pvp.net/api/lol/'.$this->region.'/v1.2/stats/by-summoner/'.$id.'/ranked?season=SEASON4&api_key='.API_KEY;
+        $addr = 'http://'.$this->region.'.api.pvp.net/api/lol/'.$this->region.'/v1.3/stats/by-summoner/'.$id.'/ranked?season=SEASON4&api_key='.API_KEY;
         
         $data = $this->getData($addr);
         
         $j = json_decode($data, True);
         
 		foreach ($j["champions"] as $champion) {
-			if ($champion["name"]=="Combined") {
+			if ($champion["id"]=="0") {
 				$combined = $champion;
 			}
 		}        

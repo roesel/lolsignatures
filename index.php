@@ -131,7 +131,7 @@ if (isset($_POST['sub']) &&
   Signature creator itself was written by <strong><a href="https://twitter.com/erthylol">Erthy</a></strong> 
   (<a href="http://www.lolking.net/summoner/eune/26174422">Erthainel</a>@EUNE).<br />
   Others: interface by <strong>Sun</strong>, props to <strong>[zG]Woods</strong>, champion numbers by <strong>Hobbesclone</strong> and skin numbers <strong>[zG]Viitrexx</strong>.<br/>
-  This product is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.
+  The LoL Signature Generator isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
 </p>
 <p style="color:gray;">DJ4pw1ue4qD84QN5ZeG7hvL8YZEqHHynNW<br/>give doge? many thanks</p>
 <p>  

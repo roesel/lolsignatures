@@ -188,7 +188,7 @@ if ($show_image) {
   /* adding stats to the image*/ 
     // medal loading and caching
     $remote_path_meds = 'http://lkimg.zamimg.com/images/medals/'.$div_name.'_'.$rank.'.png';
-    $local_path_meds =  'meds/'.$div_name.'_'.$rank.'.png';
+    $local_path_meds =  'meds_cache/'.$div_name.'_'.$rank.'.png';
     
     if (file_exists($local_path_meds)) {
         $flag = imagecreatefrompng($local_path_meds);
