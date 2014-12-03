@@ -2,33 +2,46 @@
 include_once("player.php");
 include_once("playerlk.php");
 
+/* gets the data from a URL */
+function get_data($url) {
+	$ch = curl_init();
+	$timeout = 5;
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, True);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+    curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+	$data = curl_exec($ch);
+	curl_close($ch);
+	return $data;
+}
+
 function remoteFileExists($url) {
     $curl = curl_init($url);
-
+    
     //don't fetch the actual page, you only want to check the connection is ok
-    curl_setopt($curl, CURLOPT_NOBODY, true);
-
+    //curl_setopt($curl, CURLOPT_NOBODY, true);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($curl,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+    
     //do request
     $result = curl_exec($curl);
     $ret = false;
-
+    //print("pes");
     //if request did not fail
     if ($result !== false) {
         //if request was ok, check response code
-        $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);  
+        $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE); 
         if ($statusCode == 200) {
             $ret = true;   
         }
     }
-
-    curl_close($curl);
+    
     return $ret;
 }
 
 /* -- Defining constants ---------------------------------------------------- */
-const API_KEY = "";
-const SERVER_CACHE = 43200; //12 hodin
-const BROWSER_CACHE = 10800; //3 hodiny;
+include_once("secrets/apikey.secret.php");
+include_once("secrets/const.secret.php");
 
 /* ---------------------------------------------------------------------------*/
 
@@ -47,7 +60,7 @@ if (isset($_GET["region"]) && isset($_GET["name"])){
     }
     
     // get params for logo/text/nothing
-    $params = "logo";
+    /*$params = "logo";
     if (isset($_GET["params"])) {
         if (strpos($_GET["params"],'nozg') !== false) {
             $params = "nozg";
@@ -55,38 +68,38 @@ if (isset($_GET["region"]) && isset($_GET["name"])){
         elseif (strpos($_GET["params"],'text') !== false) {
             $params = "text";
         }
-    }
+    }*/
     
     $sigs_cache_location = "sigs_cache/"; 
-    $file = $sigs_cache_location.$name."_".$region."_".$champnum."_".$skinnum."_".$params.".png";
-    if (file_exists($file) && (time() - filemtime($file) < SERVER_CACHE)) {
-        $loading_from_cache = True;
-        Header("Content-type: image/png");                      
-        Header("Cache-Control: max-age=".BROWSER_CACHE);       // Browser caching
-        readfile($file);
-        exit();
-    } else {
-        $loading_from_cache = False;
+    $file = $sigs_cache_location.$name."_".$region."_".$champnum."_".$skinnum.".png";
+    
+    // i i'm allowed to cache
+    if (CACHE) { 
+        // should I cache?
+        if (file_exists($file) && (time() - filemtime($file) < SERVER_CACHE)) {
+            Header("Content-type: image/png");                      
+            Header("Cache-Control: max-age=".BROWSER_CACHE);       // Browser caching
+            readfile($file);
+            exit();
+        }
     }
 } else {
     Header("Content-type: image/png");                      
     Header("Cache-Control: max-age=0");       // Browser caching
-    readfile("img/bad_parameters.png");
+    readfile("img/bad_request.png");
     exit();
 }
 
 /* ---------------------------------------------------------------------------*/
 
 try {
-    if ($region == "euw" || $region == "eune" || $region == "na") {
+    if (isset($region)) {
         $p = new Player($name, $region);
-    } else {
-        $p = new PlayerLK($name, $region);
-    }
+    } 
 } catch (Exception $e) {
     Header("Content-type: image/png");                      
     Header("Cache-Control: max-age=0");       // Browser caching
-    readfile("img/".$e->getMessage().".png");
+    readfile("img/".$e->getMessage().".jpg");
     exit();
 }
 
@@ -103,6 +116,7 @@ $lp = $p->lp;
 
 // stats
 $stats = $p->stats;
+
 /* -------------------------------------------------------------------------- */
 
 $show_image= true;
@@ -131,17 +145,19 @@ if ($show_image) {
       imagesavealpha($mask, 1);
   } else { 
       $local_path = 'back_cache/'.$champnum.'_'.$skinnum.'.png';
-      $remote_path = 'http://img.lolking.net/shared/images/champion_headers/'.$champnum.'_'.$skinnum.'.jpg';
+      $remote_path = 'http://www.lolking.net/shared/images/champion_headers/'.$champnum.'_'.$skinnum.'.jpg';
       
       if (file_exists($local_path)) {
           // check if background is cached
           $back = imagecreatefrompng($local_path);
       }
       elseif (remoteFileExists($remote_path)) {
+          
           // try to get the background from lolking.net
-          $back = imagecreatefromjpeg($remote_path);
+          $back = imagecreatefromstring(get_data($remote_path));
           // cache it
           imagepng($back, $local_path);
+          //print("fuck");exit();
       } else {
           // skin does not exist, reverting to transparent background
           imagealphablending($mask, 0);
@@ -170,7 +186,19 @@ if ($show_image) {
   }
   
   /* adding stats to the image*/ 
-  $flag = imagecreatefrompng('meds/'.$div_name.'_1.png');
+    // medal loading and caching
+    $remote_path_meds = 'http://lkimg.zamimg.com/images/medals/'.$div_name.'_'.$rank.'.png';
+    $local_path_meds =  'meds/'.$div_name.'_'.$rank.'.png';
+    
+    if (file_exists($local_path_meds)) {
+        $flag = imagecreatefrompng($local_path_meds);
+    } elseif (remoteFileExists($remote_path_meds)) {
+        $flag = imagecreatefromstring(get_data($remote_path_meds));
+        imagealphablending($flag, 0);
+        imagesavealpha($flag, 1);
+        imagepng($flag, $local_path_meds);
+        
+    }
   
   imagealphablending($flag, 0);
   imagesavealpha($flag, 1);
@@ -187,9 +215,10 @@ if ($show_image) {
   
   $name_margin = 0;
   
-  if ($params == "text") {
-      imagettftext($mask, 7, 0, $width*(0.005), $height*0.95, $white, $font_tahoma, "zG");
-  } 
+  imagettftext($mask, 6, 0, $width*(0.005), $height*0.97, $white, $font_tahoma, "lolsigs.com");
+  
+  // sem se dá teoreticky dát summoner icon
+  /*
   elseif ($params == "logo"){
       $flag = imagecreatefrompng('./img/logo.png');
     
@@ -199,7 +228,7 @@ if ($show_image) {
       imagecopyresampled($mask, $flag, $height*1.1, $height*0.1, 0, 0,15*$m,12*$m, 60*(15/12), 60);
       
       $name_margin = 15*$m+2;
-  }
+  }*/
   
   /* adding black stats (shadows) */
   imagettftext($mask, 17, 0, $height*(0.75)+1, $height*(0.8)+1, $black, $font, $rank_roman); // division number
@@ -237,7 +266,6 @@ if ($show_image) {
   
   imagedestroy($mask);
   imagedestroy($flag);
-  imagedestroy($stat_back);
   
   if (filesize($file) <= 30000) {
     if(is_file($file)) {
