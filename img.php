@@ -283,7 +283,9 @@ if ($show_image) {
         }
         if (filesize($path.$file) <= 30000) {
           if(is_file($path.$file)) {
-            unlink($path.$file);
+            if (preg_match('/\.png$/i', $file)) {
+              unlink($path.$file);
+            }
           }
         }
      }
