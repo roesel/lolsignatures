@@ -223,13 +223,15 @@ if ($show_image) {
   $black = imagecolorallocate($mask,0,0,0);
   $white = imagecolorallocate($mask,255,255,255);
   
+  if($debug) {print("<br/>importing fonts");}
+  
   /* font importing */
   $font = 'fonts/latin_becker_compress.ttf';
   $font_big = 'fonts/GFSNeohellenic.ttf';
   $font_tahoma = 'fonts/tahoma.ttf';
   
   $name_margin = 0;
-  
+  if($debug) {print("<br/>adding lolsigs text...");}
   imagettftext($mask, 6, 0, $width*(0.005), $height*0.97, $white, $font_tahoma, "lolsigs.com");
   
   // sem se dá teoreticky dát summoner icon
@@ -244,6 +246,8 @@ if ($show_image) {
       
       $name_margin = 15*$m+2;
   }*/
+  
+  if($debug) {print("<br/>adding stats text...");}
   
   /* adding black stats (shadows) */
   imagettftext($mask, 17, 0, $height*(0.75)+1, $height*(0.8)+1, $black, $font, $rank_roman); // division number
