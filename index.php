@@ -23,31 +23,31 @@ $(function(){
 <body>
 <div id="wrapper">
 <?php
- 
+include_once('secrets/const.secret.php'); 
+
 if (isset($_POST['sub']) && 
     isset($_POST['lolname']) &&
     isset($_POST['region']) &&
     isset($_POST['champion']) &&
-    isset($_POST['skin']) &&
-    isset($_POST['logo'])) 
+    isset($_POST['skin'])) 
 {
     $name = $_POST['lolname'];
     $region = $_POST['region'];
     $champion = $_POST['champion'];
     $skin = $_POST['skin'];
-    $logo = $_POST['logo'];
-    $address = "http://broukej.cz/lol-signatures/{$name}_{$region}_{$champion}_{$skin}_{$logo}.png"; 
+    $address = WEB."{$name}_{$region}_{$champion}_{$skin}.png"; 
     echo "<div id='result'> <h1>League of Legends signature creator</h1><p><img src=\"{$address}\"> <br />"; 
     echo "Your image will be displayed above in a few seconds. <br/> 
              And here's the url for embedding it:<br />
              <span id='url'>{$address}</span></p>";
     echo "<h2>Signature in BBCode</h2>
-          <p>[CENTER][URL='http://www.broukej.cz/lol-signatures/'][IMG]{$address}[/IMG][/URL][/CENTER]</p>";
+          <p>[CENTER][URL='".WEB."'][IMG]{$address}[/IMG][/URL][/CENTER]</p>";
     echo "<h2>Need more info?</h2><p>Have a look at the post <a href='http://redd.it/1wpwls'>on reddit</a>!</p>";
     echo "<h2>Not exactly what you wanted?</h2><p><a href='javascript:history.back()'>&larr; Go back and try again.</a></p>";      
     echo "</div>";
 } else {
     // integer starts at 0 before counting
+    $i=0;
     $dir = 'sigs_cache/';
     if ($handle = opendir($dir)) {
         while (($file = readdir($handle)) !== false){
@@ -98,21 +98,22 @@ if (isset($_POST['sub']) &&
             <option value="10">Skin 10</option>
         </select>
  
-        <select name="logo">
+        <!--<select name="logo">
             <option value="logo">zG Logo</option>
             <option value="text">zG Text</option>
             <option value="nozg">No zG Watermark</option>
-        </select> 
+        </select> -->
         <input type="submit" name="sub">
     </form>
     <p><strong>Welcome summoner</strong>, you have found yourself on the LoL signature maker, where you can make your own signature
     featuring the stats you have managed to achieve in the ranked games. Just like this:</p>
-    <p><img src="http://broukej.cz/lol-signatures/Bjerg_na_238_1_nozg.png" title="Bjerg@NA" /></p>
+    <p><img src="<?php print(WEB); ?>Torrda_eune_238_1.png" title="Torrda@EUNE" /></p>
     
     <p><strong><span style="color:red;">Known bugs/warnings:</span></strong>
     <ul style="text-align:left;margin-left:70px;color:red;">
       <li>The Riot API has been updated, please be patient until I get the script up to date</li>
 	  <li>It only works if you are placed in a league in Season 4! (this is not a bug)</li>
+      <li><strike>Spaces</strike> and special characters currently cause issues.</li>
       <li><strike>Spaces</strike> and special characters currently cause issues.</li>
       <li><strike>Win percentage doesn't show the percentage sign afterwards.</strike></li>
     </ul></p>
@@ -127,7 +128,6 @@ if (isset($_POST['sub']) &&
 ?>
 <hr/>
 <div id="footer">
-  Created for the League of Legends division of <a href="http://www.zealotgaming.com/">Zealot Gaming</a>.<br />
   Signature creator itself was written by <strong><a href="https://twitter.com/erthylol">Erthy</a></strong> 
   (<a href="http://www.lolking.net/summoner/eune/26174422">Erthainel</a>@EUNE).<br />
   Others: interface by <strong>Sun</strong>, props to <strong>[zG]Woods</strong>, champion numbers by <strong>Hobbesclone</strong> and skin numbers <strong>[zG]Viitrexx</strong>.<br/>
