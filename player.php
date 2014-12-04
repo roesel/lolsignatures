@@ -1,4 +1,5 @@
 <?php 
+//mb_internal_encoding("UTF-8");
 class Player
 {
     public $id;
@@ -17,7 +18,7 @@ class Player
     
     function __construct($name, $region)
     {
-        $this->loadPlayer(rawurlencode($name), $region);
+        $this->loadPlayer(rawurldecode($name), $region);
         $this->check(1);
         
         $this->loadRankedBasic();
@@ -58,8 +59,8 @@ function loadPlayer($name, $region) {
         $j = json_decode($data, True);
         
         // get ID and proper name
-        $this->name = $j[strtolower($name)]["name"];
-        $this->id = $j[strtolower($name)]["id"];
+        $this->name = $j[mb_strtolower($name)]["name"];
+        $this->id = $j[mb_strtolower($name)]["id"];
         
     }
 

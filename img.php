@@ -1,6 +1,11 @@
 <?php
+//mb_internal_encoding("UTF-8");
+header('Content-type: text/html; charset=utf-8');
+mb_internal_encoding("UTF-8");
+
+
 include_once("player.php");
-include_once("playerlk.php");
+
 
 /* gets the data from a URL */
 function get_data($url) {
@@ -96,6 +101,7 @@ if (isset($_GET["region"]) && isset($_GET["name"])){
     exit();
 }
 
+
 /* ---------------------------------------------------------------------------*/
 
 try {
@@ -103,10 +109,15 @@ try {
         $p = new Player($name, $region);
     } 
 } catch (Exception $e) {
-    Header("Content-type: image/png");                      
-    Header("Cache-Control: max-age=0");       // Browser caching
-    readfile("img/".$e->getMessage().".jpg");
-    exit();
+    if ($debug) {
+        print($e->getMessage());
+        exit();
+    } else {
+        Header("Content-type: image/png");                      
+        Header("Cache-Control: max-age=0");       // Browser caching
+        readfile("img/".$e->getMessage().".jpg");
+        exit();
+    }
 }
 
 // basic info
