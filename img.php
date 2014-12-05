@@ -59,7 +59,7 @@ if (isset($_GET["debug"])) {
 if (isset($_GET["region"]) && isset($_GET["name"])){
     // get name and region
     $region = strtolower($_GET["region"]);
-    $name = $_GET["name"];
+    $name = str_replace(" ", "", $_GET["name"]);
     
     if (isset($_GET["champnum"])) {
         $champnum = $_GET["champnum"];
