@@ -111,15 +111,12 @@ if (isset($_POST['sub']) &&
     
     <p><strong><span style="color:red;">Known bugs/warnings:</span></strong>
     <ul style="text-align:left;margin-left:70px;color:red;">
-      <li>The Riot API has been updated, please be patient until I get the script up to date</li>
-	  <li>It only works if you are placed in a league in Season 4! (this is not a bug)</li>
-      <li><strike>Spaces</strike> and special characters currently cause issues.</li>
-      <li><strike>Spaces</strike> and special characters currently cause issues.</li>
-      <li><strike>Win percentage doesn't show the percentage sign afterwards.</strike></li>
+      <li>This site uses the Riot API for all the data, ranked S4 only.</li>
+	  <li>It only works if you are placed in a league in Season 4!</li>
     </ul></p>
     <p><strong>TIPS:</strong> To find a champion quicker, open the selectbox and press the first few letters.</p>
-    <p><strong>INFO:</strong> It will only work if you are placed in Season 4 ranked! The site currently fetches data from the EUNE, EUW and NA servers directly from the Riot API. 
-    Your signature should load really fast, if you are from one of these. For the other regions, the old LoLKing.net fetcher is still being used. 
+    <p><strong>INFO:</strong> It will only work if you are placed in Season 4 ranked!
+    Your signature should load really fast, if you are from one of these. 
     <p><strong>STATS:</strong> There have been <?php print($i) ?> signatures generated in the last 24 hours!</p>
     <p><strong>REDDIT:</strong> If you have doubts, questions, ideas or bugs to report, do so here: <a href="http://redd.it/1wpwls">on reddit</a>!</p>
 </div> 
