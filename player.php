@@ -48,6 +48,7 @@ class Player
       Gets the proper name and ID of a player under a specified name.
     */
 function loadPlayer($name, $region) {
+        // SUMMONER 1.4
         $this->region = $region;
         
         // using name given to script - to get player instance
@@ -66,6 +67,7 @@ function loadPlayer($name, $region) {
 
     function loadRankedBasic() {
         // get ranked stats by ID - league, division name, ...
+        // LEAGUE 2.5
         $id = $this->id;
         
         $addr = 'http://'.$this->region.'.api.pvp.net/api/lol/'.$this->region.'/v2.5/league/by-summoner/'.$id.'?api_key='.API_KEY;
@@ -94,6 +96,8 @@ function loadPlayer($name, $region) {
     }
     
     function loadRankedStats() {
+        // STATS 1.3
+        
         $id = $this->id;
         
         // get detailed ranked stats by ID
