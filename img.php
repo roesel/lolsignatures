@@ -85,7 +85,7 @@ if (isset($_GET["region"]) && isset($_GET["name"])){
     $file = $sigs_cache_location.$name."_".$region."_".$champnum."_".$skinnum.".png";
     
     // i i'm allowed to cache
-    if (CACHE) { 
+    if (CACHE && $debug == False) { 
         // should I cache?
         if (file_exists($file) && (time() - filemtime($file) < SERVER_CACHE)) {
             Header("Content-type: image/png");                      
