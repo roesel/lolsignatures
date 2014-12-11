@@ -127,12 +127,11 @@
                         <div id="result">
                             <div id="signature"><img src="<?php echo $address ?>"> </div>
                             <p>Your image will be displayed above in a few seconds.</p>
-                            <br>
-                            <p>And here's the url for embedding it:</p>
-                            <pre id="url" ><?php echo $address ?></pre>
-                            <h4>Signature in BBCode</h4>
+                            <p><strong>URL: </strong>
+                            <pre id="url" ><?php echo $address ?></pre></p>
+                            <p><strong>BBCode: </strong>
                             <pre>[CENTER][URL='<?php echo WEB ?>'][IMG]<?php echo $address ?>[/IMG][/URL][/CENTER]</pre>
-                            <br><br>
+                            </p>
                             <div>
                                 <div style="display:inline-block; margin: 0 64px;">
                                     <h3>Need more info?</h3>
@@ -161,11 +160,11 @@
             <div id="wrapper-bottom">
 
                 <div id="content-bottom">
-                    <div class="warning">
+                    <!--<div class="warning">
                         <h3>WARNING:</h3>
                         <p>This site uses the Riot API for all the data, ranked S4 only.</p>
                         <p>It only works if you are placed in a league in Season 4!</p>
-                    </div>
+                    </div>-->
                     <div class="flexcontainer-center">
                         <div>
                             <h4>TIP:</h4><p> To find a champion quicker, open the selectbox and press the first few letters.</p>
