@@ -75,7 +75,11 @@ function loadPlayer($name, $region) {
         $data = $this->getData($addr);
         
         $j = json_decode($data, True);
-        
+        if (isset($j["status"]["statuscode"])) {
+            if($j["status"]["statuscode"]==503) {
+                throw new Exception(503);
+            }
+        }
         $this->rank_roman = 0;
         $this->lp = 0;
         foreach($j[strval($this->id)] as $table) {
