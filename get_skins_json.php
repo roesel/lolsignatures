@@ -1,5 +1,5 @@
 <?php
-include("champion_array.php");
+include_once("champion_array.php");
  
 $name = $_GET['id'];
 $output = "[";     
