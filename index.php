@@ -1,3 +1,58 @@
+<?php
+include_once('secrets/const.secret.php');
+
+
+
+// integer starts at 0 before counting
+$i = 0;
+$dir = 'sigs_cache/';
+if ($handle = opendir($dir)) {
+    while (($file = readdir($handle)) !== false) {
+        if (!in_array($file, array('.', '..')) && !is_dir($dir . $file))
+            $i++;
+    }
+}
+
+$formSubmited = false;
+
+if (isset($_POST['sub']) &&
+        isset($_POST['lolname']) &&
+        isset($_POST['region']) &&
+        isset($_POST['champion']) &&
+        (isset($_POST['skin']) || ($_POST['champion'] == 0)) // transparent bg has no skin
+) {
+
+
+
+    $name = $_POST['lolname'];
+    $region = $_POST['region'];
+    $champion = $_POST['champion'];
+    if (!isset($_POST['skin'])) {
+        $skin = 0; // transparent bg has no skin
+    } else {
+        $skin = $_POST['skin'];
+    }
+
+    $address = WEB . "{$name}_{$region}_{$champion}_{$skin}.png";
+
+    $formSubmited = true;
+}
+
+$region_array = array(
+    'na' => 'NA',
+    'euw' => 'EUW',
+    'eune' => 'EUNE',
+    'oce' => 'OCE',
+    'las' => 'LAS',
+    'lan' => 'LAN',
+    'br' => 'BR',
+    'tr' => 'TUR',
+    'ru' => 'RU'
+);
+?>
+
+
+
 <!DOCTYPE HTML >
 <html>
     <head>
@@ -13,6 +68,12 @@
     <script type="text/javascript" charset="utf-8">
         $(function () {
             $("select#champion").change(function () {
+                if ($("#champion option:selected").text() !== 'Transparent') {
+                    $("select#skin").removeAttr("disabled");
+                } else {
+                    $("select#skin").attr("disabled", "");
+                }
+
                 $.getJSON("./get_skins_json.php", {id: $("#champion option:selected").text(), ajax: 'true'}, function (j) {
                     var options = '';
                     for (var i = 0; i < j.length; i++) {
@@ -40,92 +101,125 @@
             }
         });
     </script>
+
+    <script type="text/javascript" charset="utf-8">
+        function imgLoaded(img) {
+            var $img = $(img);
+
+            $img.parent().addClass('loaded');
+        }
+        ;
+    </script>
     <body>
-        <?php
-        include_once('secrets/const.secret.php');
-        ?>
-        <div id="background-top">
-            <div id="wrapper-top">
-                <div id="content-top">
-                    <div id='form'> 
-                        <h1 id="page-title"><a href="<?php echo WEB ?>">League of Legends signature creator</a></h1>
-                        <form action="" id="data" method="POST">
-                            <input class="input-xlarge" type="text" placeholder="Summoner Name" name="lolname" autofocus >
-                            <!-- Not too sure of the other region codes -->
-                            <select name="region">
-                                <option value="" disabled selected class="select-placeholder">Region</option>
-                                <option value="na" >NA</option>
-                                <option value="euw">EUW</option>
-                                <option value="eune">EUNE</option>
-                                <option value="oce">OCE</option>
-                                <option value="las">LAS</option>
-                                <option value="lan">LAN</option>
-                                <option value="br">BR</option>
-                                <option value="tr">TUR</option>
-                                <option value="ru">RU</option>
-                            </select> 
-                            <select name="champion" id="champion">
-                                <option value="0">Transparent</option>
+        <div class="warning top negative">
+            <strong>WARNING:</strong> This is a test warning! (negative)
+        </div>
+        <div class="warning top positive ">
+            <strong>WARNING:</strong> This is a test warning! (positive)
+        </div>
+        <div id="background-image-top">
+            <div id="background-top">                
+                <div id="wrapper-top">
+                    <div id="content-top">                        
+                        <div id='form'> 
+                            <h1 id="page-title"><a href="<?php echo WEB ?>">League of Legends signature creator</a></h1>
+                            <form action="" id="data" method="POST">
                                 <?php
-                                include("champion_array.php");
-                                foreach ($champion_array as $champion => $id) {
-                                    print '<option value="' . $id[0] . '">' . $champion . '</option>
-                ';
+                                if (isset($name)) {
+                                    $autofocus = '';
+                                } else {
+                                    $autofocus = 'autofocus';
+                                    $name = '';
                                 }
+                                print '<input class="input-xlarge" type="text" placeholder="Summoner Name" name="lolname" value="' . $name . '" ' . $autofocus . ' required="required">';
                                 ?>
-                            </select>
-                            <select name="skin" id="skin">
-                                <option value="0">Default Skin</option>
-                                <option value="1">Skin 1</option>
-                                <option value="2">Skin 2</option>
-                                <option value="3">Skin 3</option>
-                                <option value="4">Skin 4</option>
-                                <option value="5">Skin 5</option>
-                                <option value="6">Skin 6</option>
-                                <option value="7">Skin 7</option>
-                                <option value="8">Skin 8</option>
-                                <option value="9">Skin 9</option>
-                                <option value="10">Skin 10</option>
-                            </select>
-<!--                                <select name="logo">
-                                <option value="logo">zG Logo</option>
-                                <option value="text">zG Text</option>
-                                <option value="nozg">No zG Watermark</option>
-                            </select>-->
-                            <input class="blue" type="submit" name="sub">
-                        </form>                                                
+                                <!-- Not too sure of the other region codes -->
+                                <select name="region" required="required">
+                                    <option value="" disabled selected class="select-placeholder">Region</option>
+                                    <?php
+                                    foreach ($region_array as $reg_key => $reg_name) {
+                                        $reg_selected = '';
+                                        if ($reg_key == $region) {
+                                            $reg_selected = 'selected';
+                                        }
+                                        print '<option value="' . $reg_key . '" ' . $reg_selected . '>' . $reg_name . '</option>';
+                                    }
+                                    ?>
+                                </select> 
+                                <select name="champion" id="champion">
+                                    <option value="0">Transparent</option>
+                                    <?php
+                                    include_once("champion_array.php");
+                                    foreach ($champion_array as $champion_key => $id) {
+                                        $champ_selected = '';
+                                        if ($id[0] == $champion) {
+                                            $skin_array = $id[1];
+                                            $champ_selected = 'selected';
+                                        }
+                                        print '<option value="' . $id[0] . '" ' . $champ_selected . '>' . $champion_key . '</option>';
+                                    }
+                                    ?>
+                                </select>                                
+                                <?php
+                                if (!isset($skin)) {
+                                    $skin = 0;
+                                }
+                                if (!isset($champion)) {
+                                    $champion = 0;
+                                }
+
+                                $skin_disabled = '';
+                                if ($champion == 0) {
+                                    $skin_disabled = 'disabled';
+                                }
+
+                                print '<select name="skin" id="skin" ' . $skin_disabled . '>';
+
+                                foreach ($skin_array as $id) {
+                                    $skin_selected = '';
+                                    if ($id[1] == $skin) {
+                                        $skin_selected = 'selected';
+                                    }
+                                    print '<option value="' . $id[1] . '" ' . $skin_selected . '>' . $id[0] . '</option>';
+                                }
+
+                                print '</select>';
+                                ?>
+
+<!--<select name = "logo">
+<option value = "logo">zG Logo</option>
+<option value = "text">zG Text</option>
+<option value = "nozg">No zG Watermark</option>
+</select> -->
+                                <input class = "blue" type = "submit" name = "sub">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="background-center">
-            <div id="wrapper-center">
-                <div id="content-center">
+        <div id = "background-center">
+            <div id = "wrapper-center">
+                <div id = "content-center">
 
-                    <?php
-// integer starts at 0 before counting
-                    $i = 0;
-                    $dir = 'sigs_cache/';
-                    if ($handle = opendir($dir)) {
-                        while (($file = readdir($handle)) !== false) {
-                            if (!in_array($file, array('.', '..')) && !is_dir($dir . $file))
-                                $i++;
-                        }
-                    }
-
-                    if (isset($_POST['sub']) &&
-                            isset($_POST['lolname']) &&
-                            isset($_POST['region']) &&
-                            isset($_POST['champion']) &&
-                            isset($_POST['skin'])) {
-                        $name = $_POST['lolname'];
-                        $region = $_POST['region'];
-                        $champion = $_POST['champion'];
-                        $skin = $_POST['skin'];
-                        $address = WEB . "{$name}_{$region}_{$champion}_{$skin}.png";
-                        ?>
+<?php
+if ($formSubmited) {
+    ?>
                         <div id="result">
-                            <div id="signature"><img src="<?php echo $address ?>"> </div>
+                        <?php // image loading http://www.barrelny.com/blog/taking-control-of-imageloading/     ?>
+                            <div id="signature">                                
+                                <div class="img_wrapper">                                                                        
+                                    <div class="css_spinner">
+                                        <div class="half left">
+                                            <div class="band"></div>
+                                        </div>
+                                        <div class="half right">
+                                            <div class="band"></div>
+                                        </div>
+                                    </div>
+                                    <img src="<?php echo $address ?>" alt="" onload="imgLoaded(this)">
+                                </div>
+                            </div>
                             <p>Your image will be displayed above in a few seconds.</p>
                             <p><strong>URL: </strong>
                             <pre id="url" ><?php echo $address ?></pre></p>
@@ -137,64 +231,66 @@
                                     <h3>Need more info?</h3>
                                     <p>Have a look at the post <a href='http://redd.it/1wpwls'>on reddit</a>!</p>
                                 </div>
-                                <div style="display:inline-block; margin: 0 64px;">
+                                <!--<div style="display:inline-block; margin: 0 64px;">
                                     <h3>Not exactly what you wanted?</h3>
                                     <p><a href='javascript:history.back()'>&larr; Go back and try again.</a></p>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
-                        <?php
-                    } else {
-                        ?>
+    <?php
+} else {
+    ?>
                         <p id="introduction"><strong>Welcome summoner</strong>, you have found yourself on the LoL signature maker, where you can make your own signature
                             featuring the stats you have managed to achieve in the ranked games. Just like this:</p>                        
                         <br>                      
                         <div id="signature"><img src="<?php print(WEB); ?>Torrda_eune_238_1.png" title="Torrda@EUNE"/></div>
-                        <?php
-                    }
-                    ?>
+    <?php
+}
+?>
                 </div>
             </div>
         </div>
-        <div id="background-bottom">                
-            <div id="wrapper-bottom">
+        <div id="background-image-bottom">
+            <div id="background-bottom">                
+                <div id="wrapper-bottom">
 
-                <div id="content-bottom">
-                    <!--<div class="warning">
-                        <h3>WARNING:</h3>
-                        <p>This site uses the Riot API for all the data, ranked S4 only.</p>
-                        <p>It only works if you are placed in a league in Season 4!</p>
-                    </div>-->
-                    <div class="flexcontainer-center">
-                        <div>
-                            <h4>TIP:</h4><p> To find a champion quicker, open the selectbox and press the first few letters.</p>
+                    <div id="content-bottom">
+                        <!--<div class="warning content">
+                            <h3>WARNING:</h3>
+                            <p>This site uses the Riot API for all the data, ranked S4 only.</p>
+                            <p>It only works if you are placed in a league in Season 4!</p>
+                        </div>-->
+                        <div class="flexcontainer-center">
+                            <div>
+                                <h4>TIP:</h4><p> To find a champion quicker, open the selectbox and press the first few letters.</p>
+                            </div>
+                            <div>
+                                <h4>INFO:</h4><p> It will only work if you are placed in Season 4 ranked!
+                                    Your signature should load really fast, if you are from one of these. 
+                            </div>
+                            <div>
+                                <h4>STATS:</h4><p> There have been <?php print($i) ?> signatures generated in the last 24 hours!</p>
+                            </div>
+                            <div>
+                                <h4>REDDIT:</h4><p> If you have doubts, questions, ideas or bugs to report, do so here: <a href="http://redd.it/1wpwls">on reddit</a>!</p>
+                            </div>
                         </div>
-                        <div>
-                            <h4>INFO:</h4><p> It will only work if you are placed in Season 4 ranked!
-                                Your signature should load really fast, if you are from one of these. 
-                        </div>
-                        <div>
-                            <h4>STATS:</h4><p> There have been <?php print($i) ?> signatures generated in the last 24 hours!</p>
-                        </div>
-                        <div>
-                            <h4>REDDIT:</h4><p> If you have doubts, questions, ideas or bugs to report, do so here: <a href="http://redd.it/1wpwls">on reddit</a>!</p>
-                        </div>
+
                     </div>
-
                 </div>
             </div>
-        </div>
 
-        <div id="background-footer">
-            <div id="wrapper-footer">
-                <div id="content-footer">
-                    <div id="footer">
-                        Signature creator itself was written by <strong><a href="https://twitter.com/erthylol">Erthy</a></strong> 
-                        (<a href="http://www.lolking.net/summoner/eune/26174422">Erthainel</a>@EUNE).<br>
-                        Others: interface by <strong>Sun</strong>, props to <strong>[zG]Woods</strong>, champion numbers by <strong>Hobbesclone</strong> and skin numbers <strong>[zG]Viitrexx</strong>.<br>
-                        <br>The LoL Signature Generator isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
-                        <br>
-                        <p style="color:gray;">DJ4pw1ue4qD84QN5ZeG7hvL8YZEqHHynNW<br/>give doge? many thanks</p>  
+            <div id="background-footer">
+                <div id="wrapper-footer">
+                    <div id="content-footer">
+                        <div id="footer">
+                            Signature creator itself was written by <strong><a href="https://twitter.com/erthylol">Erthy</a></strong> 
+                            (<a href="http://www.lolking.net/summoner/eune/26174422">Erthainel</a>@EUNE).<br>
+                            Others: interface by <strong>Sun</strong>, props to <strong>[zG]Woods</strong>, champion numbers by <strong>Hobbesclone</strong> and skin numbers <strong>[zG]Viitrexx</strong>.<br>
+                            <br>The LoL Signature Generator isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
+                            <br>
+                            <p style="color:gray;">DJ4pw1ue4qD84QN5ZeG7hvL8YZEqHHynNW<br/>give doge? many thanks</p>  
+                        </div>
                     </div>
                 </div>
             </div>

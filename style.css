@@ -1,4 +1,7 @@
 /* CSS file */
+
+/*color 382F29*/
+
 body {
     font-family: 'PT Sans', sans-serif;
     /*color: #333;*/
@@ -9,9 +12,43 @@ body {
     padding: 0;
 
     background-color: #333;
+}
+
+#background-image-top {
     background-image: url('img/wallpaper.jpg');
     background-position: center top;
     background-repeat: no-repeat;
+}
+
+#background-image-bottom {
+    background-image: url('img/wallpaper.jpg');
+    background-position: center bottom;
+    background-repeat: no-repeat;
+}
+
+.warning.top {
+    text-align: center;
+    padding: 10px 32px;        
+}
+
+.warning.negative {
+    /*background-color: rgb(255, 168, 168);*/
+    background-color: rgb(255, 192, 192);
+    border: 1px solid rgb(236, 128, 128);
+    color: rgb(197, 0, 0);
+    text-shadow: rgba(200, 200, 200, 0.5) 1px 1px 1px;
+    
+    display: none;
+}
+
+.warning.positive {
+    /*background-color: rgb(184, 244, 184);*/
+    background-color: rgb(206, 249, 206);
+    border: 1px solid rgb(102, 189, 102);
+    color: rgb(45, 136, 45);
+    text-shadow: rgba(200, 200, 200, 0.5) 1px 1px 1px;
+    
+    display: none;
 }
 
 #background-center {
@@ -119,11 +156,13 @@ a {
 }
 
 
-#signature img {    
+#signature {    
     margin-left: auto;
     margin-right: auto;
     padding: 16px;
     background-color: white;
+    
+    width: 450px;
 }
 
 #form {
@@ -166,7 +205,7 @@ pre {
     text-align: center;
 }
 
-.warning {
+.warning.content {
     color: #d14836;
     color: #c53727;
     color: #dd4b39;
@@ -176,3 +215,149 @@ pre {
     font-style: italic;
 }
 
+/* image loading */
+
+/* 
+*  The .img_wrapper and img styles should be 
+*  changed to suit your project. The only crucial
+*  properties are the opacity values and CSS3 transitions
+*  defined on the img tags.
+*/
+
+.img_wrapper{
+    position: relative;
+/*    padding-top: 75%;
+    margin-bottom: 40px;*/
+    min-height: 80px;
+    /*background: #fafafa;*/    
+    overflow: hidden;
+}
+
+.img_wrapper img{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    
+    background-image: -webkit-linear-gradient(45deg,#efefef 25%,transparent 25%,transparent 75%,#efefef 75%,#efefef),-webkit-linear-gradient(45deg,#efefef 25%,transparent 25%,transparent 75%,#efefef 75%,#efefef);
+    background-position: 0 0,10px 10px;
+    -webkit-background-size: 21px 21px;
+    background-size: 21px 21px;
+
+    -webkit-transition: opacity .5s;
+    -moz-transition: opacity .5s;
+    -ms-transition: opacity .5s;
+    transition: opacity .5s;
+}
+
+.img_wrapper.loaded img{
+    opacity: 1;
+}
+
+.img_wrapper.loaded .css_spinner{
+    display: none;
+}
+
+/*
+* CSS loading spinner styles for second example.
+* You could also use a background image .gif 
+* on the img_wrapper, or any rotating element.
+*/
+
+.css_spinner{
+	position: absolute;
+	width: 48px;
+	height: 48px;
+	left: 50%;
+	top: 50%;
+	margin: -24px 0 0 -24px;
+	opacity: .3;
+	
+	-webkit-border-radius: 999px;
+	-moz-border-radius: 999px;
+	border-radius: 999px;
+}
+
+.css_spinner .half{
+	position: absolute;
+	width: 24px;
+	height: 48px;
+	top: 0;
+	overflow: hidden;
+}
+
+.css_spinner .left{
+	left: 0px;
+	
+	-webkit-border-radius: 999px 0 0 999px;
+	-moz-border-radius: 999px 0 0 999px;
+	border-radius: 999px 0 0 999px;
+}
+
+.css_spinner .right{
+	left: 24px;
+	
+	-webkit-border-radius: 0 999px 999px 0;
+	-moz-border-radius: 0 999px 999px 0;
+	border-radius: 0 999px 999px 0;
+}
+
+.css_spinner .band{
+	position: absolute;
+	width: 24px;
+	height: 48px;
+	background: #75665C;
+	
+	-webkit-border-radius: 999px;
+	-moz-border-radius: 999px;
+	border-radius: 999px;
+	
+	-webkit-animation: cssSpinnerRight 1.5s infinite linear;
+	-moz-animation: cssSpinnerRight 1.5s infinite linear;
+}
+
+.css_spinner .left .band{
+	left: 0;
+	border-left: 24px solid #fafafa;
+
+	-webkit-animation: cssSpinnerLeft 1.5s infinite linear;
+	-moz-animation: cssSpinnerLeft 1.5s infinite linear;
+}
+
+.css_spinner .right .band{
+	right: 0;
+	border-right: 24px solid #fafafa;
+}
+
+@-webkit-keyframes cssSpinnerLeft{
+  0%{-webkit-transform:rotate(0deg)}
+  25%{-webkit-transform:rotate(0deg)}
+  50%{-webkit-transform:rotate(180deg)}
+  75%{-webkit-transform:rotate(180deg)}
+  100%{-webkit-transform:rotate(360deg)}
+}
+
+@-webkit-keyframes cssSpinnerRight{
+  0%{-webkit-transform:rotate(0deg)}
+  25%{-webkit-transform:rotate(180deg)}
+  50%{-webkit-transform:rotate(180deg)}
+  75%{-webkit-transform:rotate(360deg)}
+  100%{-webkit-transform:rotate(360deg)}
+}
+
+@-moz-keyframes cssSpinnerLeft{
+  0%{-moz-transform:rotate(0deg)}
+  25%{-moz-transform:rotate(0deg)}
+  50%{-moz-transform:rotate(180deg)}
+  75%{-moz-transform:rotate(180deg)}
+  100%{-moz-transform:rotate(360deg)}
+}
+
+@-moz-keyframes cssSpinnerRight{
+  0%{-moz-transform:rotate(0deg)}
+  25%{-moz-transform:rotate(180deg)}
+  50%{-moz-transform:rotate(180deg)}
+  75%{-moz-transform:rotate(360deg)}
+  100%{-moz-transform:rotate(360deg)}
+}

@@ -956,6 +956,12 @@ $champion_array = array(
 
           ), 	
 
+"Transparent" => array ( 0, array(
+                          array("No skin available", 0),
+                      )
+
+          ),    
+    
 "Tristana" => array ( 18, array(
                           array("Original Tristana", 0),
                           array("Riot Girl Tristana", 1),
