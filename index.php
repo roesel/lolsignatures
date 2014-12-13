@@ -64,8 +64,29 @@ $region_array = array(
         <link rel='stylesheet' type='text/css' href='form.css'>        
     </head>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <!--<script type="text/javascript" src="jquery.js"></script>-->
     <script type="text/javascript" charset="utf-8">
+
+        // When document is ready...
+        $(document).ready(function () {
+
+            // If cookie is set, scroll to the position saved in the cookie.
+            if ($.cookie("scroll") !== null) {
+                $(document).scrollTop($.cookie("scroll"));
+            }
+
+            // When a button is clicked...
+            $('#form-submit').on("click", function () {
+
+                // Set a cookie that holds the scroll position.
+                $.cookie("scroll", $(document).scrollTop());
+
+            });
+
+        });
+
+
         $(function () {
             $("select#champion").change(function () {
                 if ($("#champion option:selected").text() !== 'Transparent') {
@@ -191,7 +212,7 @@ $region_array = array(
 <option value = "text">zG Text</option>
 <option value = "nozg">No zG Watermark</option>
 </select> -->
-                                <input class = "blue" type = "submit" name = "sub">
+                                <input class = "blue" type = "submit" name = "sub" id="form-submit">
                             </form>
                         </div>
                     </div>
@@ -202,11 +223,11 @@ $region_array = array(
             <div id = "wrapper-center">
                 <div id = "content-center">
 
-<?php
-if ($formSubmited) {
-    ?>
+                    <?php
+                    if ($formSubmited) {
+                        ?>
                         <div id="result">
-                        <?php // image loading http://www.barrelny.com/blog/taking-control-of-imageloading/     ?>
+                            <?php // image loading http://www.barrelny.com/blog/taking-control-of-imageloading/     ?>
                             <div id="signature">                                
                                 <div class="img_wrapper">                                                                        
                                     <div class="css_spinner">
@@ -237,16 +258,16 @@ if ($formSubmited) {
                                 </div>-->
                             </div>
                         </div>
-    <?php
-} else {
-    ?>
+                        <?php
+                    } else {
+                        ?>
                         <p id="introduction"><strong>Welcome summoner</strong>, you have found yourself on the LoL signature maker, where you can make your own signature
                             featuring the stats you have managed to achieve in the ranked games. Just like this:</p>                        
                         <br>                      
                         <div id="signature"><img src="<?php print(WEB); ?>Torrda_eune_238_1.png" title="Torrda@EUNE"/></div>
-    <?php
-}
-?>
+                        <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -285,7 +306,7 @@ if ($formSubmited) {
                     <div id="content-footer">
                         <div id="footer">
                             Signature creator itself was written by <strong><a href="https://twitter.com/erthylol">Erthy</a></strong> 
-                            (<a href="http://www.lolking.net/summoner/eune/26174422">Erthainel</a>@EUNE).<br>
+                            (<a href="http://www.lolking.net/summoner/eune/26174422">Erthainel</a>@EUNE). Web interface design by <strong><a href="mailto:ondrian.t[at]gmail[dot]com">Ondrian</a></strong>.<br>
                             Others: interface by <strong>Sun</strong>, props to <strong>[zG]Woods</strong>, champion numbers by <strong>Hobbesclone</strong> and skin numbers <strong>[zG]Viitrexx</strong>.<br>
                             <br>The LoL Signature Generator isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
                             <br>
