@@ -41,6 +41,7 @@ class Player
             case 404: throw new Exception($status); break;
             case 429: throw new Exception($status); break;
             case 4041: throw new Exception($status); break;
+            case 503: throw new Exception($status); break;
         }
     }
     
@@ -147,6 +148,8 @@ function loadPlayer($name, $region) {
         $this->status = $httpCode;
         
         curl_close($handle);
+        
+        $this->check(0);
         
         return $response;
     }
