@@ -97,7 +97,7 @@ input[type="password"],
 input[type="email"],
 select,
 option{
-  display: inline-block;
+  /*display: inline-block;*/
   background: white;
   border: 1px solid #D9D9D9;
   border-top: 1px solid silver;

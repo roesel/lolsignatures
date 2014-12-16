@@ -54,85 +54,87 @@ $region_array = array(
 
 
 <!DOCTYPE HTML >
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <title>League of Legends signature creator</title>
-        <meta http-equiv='Content-language' content='en'>
-        <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <!--<meta http-equiv='Content-language' content='en'>-->
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <link rel='stylesheet' type='text/css' href='style.css'>
-        <link rel='stylesheet' type='text/css' href='form.css'>        
-    </head>
+        <link rel='stylesheet' type='text/css' href='form.css'>            
     <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>-->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.cookie.js"></script>
-    <!--<script type="text/javascript" src="jquery.js"></script>-->
-    <script type="text/javascript" charset="utf-8">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
+        <!--<script type="text/javascript" src="jquery.js"></script>-->
 
-        // When document is ready...
-        $(document).ready(function () {
+    </head>
+    <body>
+        <script type="text/javascript">
 
-            // If cookie is set, scroll to the position saved in the cookie.
-            if ($.cookie("scroll") !== null) {
-                $(document).scrollTop($.cookie("scroll"));
-            }
+            // When document is ready...
+            $(document).ready(function () {
 
-            // When a button is clicked...
-            $('#form-submit').on("click", function () {
+                // If cookie is set, scroll to the position saved in the cookie.
+                if ($.cookie("scroll") !== null) {
+                    $(document).scrollTop($.cookie("scroll"));
+                }
 
-                // Set a cookie that holds the scroll position.
-                $.cookie("scroll", $(document).scrollTop());
+                // When a button is clicked...
+                $('#form-submit').on("click", function () {
+
+                    // Set a cookie that holds the scroll position.
+                    $.cookie("scroll", $(document).scrollTop());
+
+                });
 
             });
 
-        });
 
-
-        $(function () {
-            $("select#champion").change(function () {
-                if ($("#champion option:selected").text() !== 'Transparent') {
-                    $("select#skin").removeAttr("disabled");
-                } else {
-                    $("select#skin").attr("disabled", "");
-                }
-
-                $.getJSON("./get_skins_json.php", {id: $("#champion option:selected").text(), ajax: 'true'}, function (j) {
-                    var options = '';
-                    for (var i = 0; i < j.length; i++) {
-                        options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
+            $(function () {
+                $("select#champion").change(function () {
+                    if ($("#champion option:selected").text() !== 'Transparent') {
+                        $("select#skin").removeAttr("disabled");
+                    } else {
+                        $("select#skin").attr("disabled", "");
                     }
-                    $("select#skin").html(options);
+
+                    $.getJSON("./get_skins_json.php", {id: $("#champion option:selected").text(), ajax: 'true'}, function (j) {
+                        var options = '';
+                        for (var i = 0; i < j.length; i++) {
+                            options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
+                        }
+                        $("select#skin").html(options);
+                    })
                 })
-            })
-        });
+            });
 
 
-        $(document).on('click', 'pre', function () {
+            $(document).on('click', 'pre', function () {
 
-            if (this.select) {
-                this.select();
+                if (this.select) {
+                    this.select();
+                }
+                else if (document.selection) {
+                    var range = document.body.createTextRange();
+                    range.moveToElementText(this);
+                    range.select();
+                } else if (window.getSelection) {
+                    var range = document.createRange();
+                    range.selectNode(this);
+                    window.getSelection().addRange(range);
+                }
+            });
+        </script>
+
+        <script type="text/javascript">
+            function imgLoaded(img) {
+                var $img = $(img);
+
+                $img.parent().addClass('loaded');
             }
-            else if (document.selection) {
-                var range = document.body.createTextRange();
-                range.moveToElementText(this);
-                range.select();
-            } else if (window.getSelection) {
-                var range = document.createRange();
-                range.selectNode(this);
-                window.getSelection().addRange(range);
-            }
-        });
-    </script>
+            ;
+        </script>
 
-    <script type="text/javascript" charset="utf-8">
-        function imgLoaded(img) {
-            var $img = $(img);
-
-            $img.parent().addClass('loaded');
-        }
-        ;
-    </script>
-    <body>
         <div class="warning top negative">
             <strong>WARNING:</strong> This is a test warning! (negative)
         </div>
@@ -145,7 +147,7 @@ $region_array = array(
                     <div id="content-top">                        
                         <div id='form'> 
                             <h1 id="page-title"><a href="<?php echo WEB ?>">League of Legends signature creator</a></h1>
-                            <form action="" id="data" method="POST">
+                            <form id="data" method="POST">
                                 <?php
                                 if (isset($name)) {
                                     $autofocus = '';
@@ -213,7 +215,7 @@ $region_array = array(
 <option value = "text">zG Text</option>
 <option value = "nozg">No zG Watermark</option>
 </select> -->
-                                <input class = "blue" type = "submit" name = "sub" id="form-submit">
+                                <input class="blue" type="submit" name="sub" id="form-submit" value="Generate Signature">
                             </form>
                         </div>
                     </div>
@@ -239,7 +241,7 @@ $region_array = array(
                                             <div class="band"></div>
                                         </div>
                                     </div>
-                                    <img src="<?php echo $address ?>" alt="" onload="imgLoaded(this)">
+                                    <img src="<?php echo $address ?>" alt="signature" onload="imgLoaded(this)" title="<?php print $name . '@'. $region; ?>">
                                 </div>
                             </div>
                             <p>Your image will be displayed above in a few seconds.</p>
@@ -265,7 +267,7 @@ $region_array = array(
                         <p id="introduction"><strong>Welcome summoner</strong>, you have found yourself on the LoL signature maker, where you can make your own signature
                             featuring the stats you have managed to achieve in the ranked games. Just like this:</p>                        
                         <br>                      
-                        <div id="signature"><img src="<?php print(WEB); ?>Torrda_eune_238_1.png" title="Torrda@EUNE"/></div>
+                        <div id="signature"><img src="<?php print(WEB); ?>Torrda_eune_238_1.png" title="Torrda@EUNE" alt="signature"/></div>
                         <?php
                     }
                     ?>
@@ -307,7 +309,7 @@ $region_array = array(
                     <div id="content-footer">
                         <div id="footer">
                             Signature creator itself was written by <strong><a href="https://twitter.com/erthylol">Erthy</a></strong> 
-                            (<a href="http://www.lolking.net/summoner/eune/26174422">Erthainel</a>@EUNE). Web interface design by <strong><a href="mailto:ondrian.t[at]gmail[dot]com">Ondrian</a></strong>.<br>
+                            (<a href="http://www.lolking.net/summoner/eune/26174422">Erthainel</a>@EUNE). Web interface design by <strong><a href="<?php print htmlspecialchars('mailto:ondrian.t[at]gmail[dot]com');?>">Ondrian</a></strong>.<br>
                             Others: interface by <strong>Sun</strong>, props to <strong>[zG]Woods</strong>, champion numbers by <strong>Hobbesclone</strong> and skin numbers <strong>[zG]Viitrexx</strong>.<br>
                             <br>The LoL Signature Generator isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
                             <br>
