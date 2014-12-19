@@ -1,8 +1,20 @@
 <?php 
+// Last update: 19-12-2014 by Viitrexx
+
+/*
+ "" => array ( , array(
+						  array("Original ", 0),
+						  array("", ),
+					  )
+		  ),
+					
+*/
+
 $champion_array = array(
 "Aatrox" => array ( 266, array(
                           array("Original Aatrox", 0),
-                          array("Justicar Aatrox", 1),                                     
+                          array("Justicar Aatrox", 1),
+						  array("Mecha Aatrox", 2), 
                       )
 
           ),
@@ -12,7 +24,8 @@ $champion_array = array(
                           array("Dynasty Ahri", 1),
                           array("Midnight Ahri", 2),
                           array("Foxfire Ahri", 3),
-                          array("Popstar Ahri", 4),                           
+                          array("Popstar Ahri", 4),
+						  array("Dauntless Ahri", 5),
                       )
 
           ),    
@@ -23,8 +36,8 @@ $champion_array = array(
                           array("Crimson Akali", 2),
                           array("All-Star Akali", 3),
                           array("Nurse Akali", 4), 
-				array("Blood Moon Akali", 5),
-				array("Silvermoon Akali", 6),
+						  array("Blood Moon Akali", 5),
+						  array("Silverfang Akali", 6),
                       )
 
           ),    		
@@ -35,8 +48,9 @@ $champion_array = array(
                           array("Golden Alistar", 2),
                           array("Matador Alistar", 3),
                           array("Longhorn Alistar", 4),   
-				array("Unchained Alistar", 5),
-				array("Infernal Alistar", 6),
+						  array("Unchained Alistar", 5),
+						  array("Infernal Alistar", 6),
+						  array("Sweeper Alistar", 7),
                       )
 
           ),    	
@@ -47,20 +61,20 @@ $champion_array = array(
                           array("Vancouver Amumu", 2),
                           array("Emumu", 3),
                           array("Re-Gifted Amumu", 4), 
-				array("Almost-Prom King Amumu", 5),
-				array("Little Knight Amumu", 6),
-				array("Sad Robot Amumu", 7),
+						  array("Almost-Prom King Amumu", 5),
+						  array("Little Knight Amumu", 6),
+						  array("Sad Robot Amumu", 7),
                       )
 
           ),    
 
-"Anivia" => array ( 34	, array(
+"Anivia" => array ( 34, array(
                           array("Original Anivia", 0),
-                          array("Tean Spirit Anivia", 1),
+                          array("Team Spirit Anivia", 1),
                           array("Bird of Prey Anivia", 2),
                           array("Noxus Hunter Anivia", 3),
                           array("Hextech Anivia", 4), 
-				array("Blackfrost Anivia", 5),
+						  array("Blackfrost Anivia", 5),
                       )
 
           ), 	
@@ -71,10 +85,10 @@ $champion_array = array(
                           array("Red Riding Annie", 2),
                           array("Annie in Wonderland", 3),
                           array("Prom Queen Annie", 4), 
-				array("Frostfire Annie", 5),
-				array("Reverse Annie", 6),
-				array("FrankenTibbers Annie", 7),
-				array("Panda Anie", 8),
+						  array("Frostfire Annie", 5),
+						  array("Reverse Annie", 6),
+						  array("FrankenTibbers Annie", 7),
+						  array("Panda Annie", 8),
                       )
 
           ), 	
@@ -86,20 +100,28 @@ $champion_array = array(
                           array("Sherwood Forest Ashe", 2),
                           array("Woad Ashe", 3),
                           array("Queen Ashe", 4), 
-				array("Amethyst Ashe", 5),
+						  array("Amethyst Ashe", 5),
+						  array("Heartseeker Ashe", 6),
 			 )
 
           ), 	
 
+"Azir" => array ( 268, array(
+						  array("Original Azir", 0),
+						  array("Galactic Azir", 1),
+					  )
+		  ),
+				  
+		  
 "Blitzcrank" => array ( 53, array(
                           array("Original Blitzcrank", 0),
                           array("Rusty Blitzcrank", 1),
                           array("Goalkeeper Blitzcrank", 2),
                           array("Boomboom Blitzcrank", 3),
                           array("Piltover Customs Blitzcrank", 4), 
-				array("Definitely Not Blitzcrank", 5),
-				array("iBlitzcrank", 6),
-				array("Riot Blitzcrank", 7),
+						  array("Definitely Not Blitzcrank", 5),
+						  array("iBlitzcrank", 6),
+						  array("Riot Blitzcrank", 7),
                       )
 
           ), 		
@@ -114,13 +136,21 @@ $champion_array = array(
 
           ), 
 
+"Braum" => array ( 201, array(
+						  array("Original Braum", 0),
+						  array("Dragonslayer Braum", 1),
+						  array("El Tigre Braum", 2),
+			  )
+		  ),
+		  
 "Caitlyn" => array ( 51, array(
                           array("Original Caitlyn", 0),
                           array("Resistance Caitlyn", 1),
                           array("Sheriff Caitlyn", 2),
                           array("Safari Caitlyn", 3),
                           array("Arctic Warfare Caitlyn", 4), 
-				array("Officer Caitlyn", 5),
+						  array("Officer Caitlyn", 5),
+						  array("Headhunter Caitlyn", 6),
                       )
 
           ), 	
@@ -141,7 +171,7 @@ $champion_array = array(
                           array("Gentleman Cho'Gath", 2),
                           array("Loch Ness Cho'Gath", 3),
                           array("Jurassic Cho'Gath", 4), 
-				                  array("Battlecast Cho'Gath", 5),
+				          array("Battlecast Cho'Gath", 5),
                               )
                       
 
@@ -153,8 +183,9 @@ $champion_array = array(
                           array("Ice Toboggan Corki", 2),
                           array("Red Baron Corki", 3),
                           array("Hot Rod Corki", 4), 
-				array("Urfrider Corki", 5),
-				array("Dragonwing Corki", 6),				
+						  array("Urfrider Corki", 5),
+						  array("Dragonwing Corki", 6),
+						  array("Fnatic Corki", 7),
                       )
 
           ), 				  
@@ -164,6 +195,7 @@ $champion_array = array(
                           array("Lord Darius", 1),
                           array("Bioforge Darius", 2),
                           array("Woad King Darius", 3), 
+						  array("Dunkmaster Darius", 4),
                       )
 
           ), 			  
@@ -182,9 +214,9 @@ $champion_array = array(
                           array("Mr. Mundoverse", 2),
                           array("Corporate Mundo", 3),
                           array("Mundo Mundo", 4), 
-				array("Executioner Mundo", 5),
-				array("Rageborn Mundo", 6),
-				array("TPA Mundo", 7),
+						  array("Executioner Mundo", 5),
+						  array("Rageborn Mundo", 6),
+						  array("TPA Mundo", 7),
                       )
 
           ), 			
@@ -193,6 +225,7 @@ $champion_array = array(
                           array("Original Draven", 0),
                           array("Soul Reaver Draven", 1),
                           array("Gladiator Draven", 2),
+						  array("Primetime Draven", 3),
                       )
 
           ), 	
@@ -201,6 +234,7 @@ $champion_array = array(
                           array("Original Elise", 0),
                           array("Death Blossom Elise", 1),
                           array("Victorious Elise", 2),
+						  array("Blood Moon Elise", 3),
                       )
 
           ), 			  
@@ -210,6 +244,7 @@ $champion_array = array(
                           array("Shadow Evelynn", 1),
                           array("Masquerade Evelynn", 2),
                           array("Tango Evelynn", 3),
+						  array("Safecracker Evelynn", 4),
                       )
 
           ), 	
@@ -220,8 +255,9 @@ $champion_array = array(
                           array("Striker Ezreal", 2),
                           array("Frosted Ezreal", 3),
                           array("Explorer Ezreal", 4), 
-				array("Pulsefire Ezreal", 5),
-				array("TPA Ezreal", 6),
+						  array("Pulsefire Ezreal", 5),
+						  array("TPA Ezreal", 6),
+						  array("Debonair Ezreal", 7),
                       )
 
           ), 	
@@ -232,9 +268,9 @@ $champion_array = array(
                           array("Union Jack Fiddlesticks", 2),
                           array("Bandito Fiddlesticks", 3),
                           array("Pumpkinhead Fiddlesticks", 4), 
-				array("Fiddle Me Timbers", 5),
-				array("Surprise Party Fiddlesticks", 6),
-				array("Dark Candy Fiddlesticks", 7),
+						  array("Fiddle Me Timbers", 5),
+						  array("Surprise Party Fiddlesticks", 6),
+						  array("Dark Candy Fiddlesticks", 7),
                       )
 
           ), 	
@@ -253,6 +289,7 @@ $champion_array = array(
                           array("Atlantean Fizz", 1),
                           array("Tundra Fizz", 2),
                           array("Fisherman Fizz", 3),
+						  array("Void Fizz", 4),
                       )
 
           ), 	
@@ -267,14 +304,14 @@ $champion_array = array(
 
           ), 	
 	
-"Gangplank" => array ( 31, array(
+"Gangplank" => array ( 41, array(
                           array("Original Gangplank", 0),
                           array("Spooky Gangplank", 1),
                           array("Minuteman Gangplank", 2),
                           array("Sailor Gangplank", 3),
                           array("Toy Soldier Gangplank", 4), 
-				array("Special Forces Gangplank", 5),
-				array("Sultan Gangplank", 6),
+						  array("Special Forces Gangplank", 5),
+						  array("Sultan Gangplank", 6),
                       )
 
           ), 	
@@ -285,20 +322,28 @@ $champion_array = array(
                           array("Desert Trooper Garen", 2),
                           array("Commando Garen", 3),
                           array("Dreadknight Garen", 4), 
-				array("Rugged Garen", 5),
-				array("Steel Legion Garen", 6),
+						  array("Rugged Garen", 5),
+						  array("Steel Legion Garen", 6),
                       )
 
           ), 		
-	
+
+"Gnar" => array ( 150, array(
+						  array("Original Gnar", 0),
+						  array("Dino Gnar", 1),
+					  )
+		  ),
+		  
 "Gragas" => array ( 79, array(
                           array("Original Gragas", 0),
                           array("Scuba Gragas", 1),
                           array("Hillbilly Gragas", 2),
                           array("Santa Gragas", 3),
                           array("Gragas, Esq.", 4), 
-				array("Vandal Gragas", 5),
-				array("Oktoberfest Gragas ", 6),
+						  array("Vandal Gragas", 5),
+						  array("Oktoberfest Gragas ", 6),
+						  array("Superfan Gragas", 7),
+						  array("Fnatic Gragas", 8),
                       )
 
           ), 		
@@ -309,7 +354,7 @@ $champion_array = array(
                           array("Jailbreak Graves", 2),
                           array("Mafia Graves", 3),
                           array("Riot Graves", 4), 
-				array("Pool Party Graves", 5),
+						  array("Pool Party Graves", 5),
                       )
 
           ), 		
@@ -330,6 +375,7 @@ $champion_array = array(
                           array("Blast Zone Heimerdinger", 2),
                           array("Piltover Customs Heimerdinger", 3),
                           array("Snowmerdinger", 4),
+						  array("Hazmat Heimerdinger", 5),
                       )
 
           ), 		
@@ -350,7 +396,8 @@ $champion_array = array(
                           array("Hextech Janna", 2),
                           array("Frost Queen Janna", 3),
                           array("Victorious Janna", 4), 
-				array("Forecast Janna", 5),
+						  array("Forecast Janna", 5),
+						  array("Fnatic Janna", 6),
                       )
 
           ), 	
@@ -361,20 +408,22 @@ $champion_array = array(
                           array("Dragon Slayer Jarvan IV", 2),
                           array("Darkforge Jarvan IV", 3),
                           array("Victorious Jarvan IV", 4), 
-				array("Warring Kingdoms Jarvan IV", 5),
+						  array("Warring Kingdoms Jarvan IV", 5),
+						  array("Fnatic Jarvan IV", 6),
                       )
 
           ), 	
 	
-"jax" => array ( 24, array(
+"Jax" => array ( 24, array(
                           array("Original Jax", 0),
                           array("The Mighty Jax", 1),
                           array("Vandal Jax", 2),
                           array("Angler Jax", 3),
                           array("PAX Jax", 4), 
-				array("Jaximus", 5),
-				array("Temple Jax", 6),
-				array("Nemesis Jax", 7),
+						  array("Jaximus", 5),
+						  array("Temple Jax", 6),
+						  array("Nemesis Jax", 7),
+						  array("SKT T1 Jax", 8),
                       )
 
           ), 		
@@ -393,12 +442,20 @@ $champion_array = array(
                       )
 
           ), 	
+		  
+"Kalista" => array ( 429, array(
+						  array("Original Kalista", 0),
+						  array("Bloodmoon Kalista", 1),
+					  )
+		  ),
+				  
 
 "Karma" => array ( 43, array(
                           array("Original Karma", 0),
                           array("Sun Goddess Karma", 1),
                           array("Sakura Karma", 2),
                           array("Traditional Karma", 3),
+						  array("Order of the Lotus Karma", 4),
                       )
 
           ), 	
@@ -409,13 +466,14 @@ $champion_array = array(
                           array("Statue of Karthus", 2),
                           array("Grim Reaper Karthus", 3),
                           array("Pentakill Karthus", 4), 
+						  array("Fnatic Karthus", 5),
                       )
 
           ), 	
 
 "Kassadin" => array ( 38, array(
                           array("Original Kassadin", 0),
-				array("Festival Kassadin", 1),
+						  array("Festival Kassadin", 1),
                           array("Deep One Kassadin", 2),
                           array("Pre-Void Kassadin", 3),
                           array("Harbringer Kassadin", 4),
@@ -429,9 +487,9 @@ $champion_array = array(
                           array("Red Card Katarina", 2),
                           array("Bilgewater Katarina", 3),
                           array("Kitty Cat Katarina", 4), 
-				array("High Command Katarina", 5),
-				array("Sandstorm Katarina", 6),
-				array("Slay Belle Katarina", 7),
+						  array("High Command Katarina", 5),
+						  array("Sandstorm Katarina", 6),
+						  array("Slay Belle Katarina", 7),
                       )
 
           ), 	
@@ -442,8 +500,9 @@ $champion_array = array(
                           array("Viridian Kayle", 2),
                           array("Unmasked Kayle", 3),
                           array("Battleborn Kayle", 4), 
-				array("Judgment Kayle", 5),
-				array("Aether Wing Kayle", 6),
+						  array("Judgment Kayle", 5),
+						  array("Aether Wing Kayle", 6),
+						  array("Riot Kayle", 7),
                       )
 
           ), 	
@@ -454,7 +513,7 @@ $champion_array = array(
                           array("Swamp Master Kennen", 2),
                           array("Karate Kennen", 3),
                           array("Kennen M.D.", 4), 
-				array("Arctic Ops Kennen", 5),
+						  array("Arctic Ops Kennen", 5),
                       )
 
           ), 	
@@ -462,6 +521,7 @@ $champion_array = array(
 "Kha'Zix" => array ( 121, array(
                           array("Original Kha'Zix", 0),
                           array("Mecha Kha'Zix", 1),
+						  array("Guardian of the Sands Kha'Zix", 2),
                       )
 
           ), 	
@@ -472,9 +532,10 @@ $champion_array = array(
                           array("Sonoran Kog'Maw", 2),
                           array("Monarch Kog'Maw", 3),
                           array("Reindeer Kog'Maw", 4), 
-				array("Lion Dance Kog'Maw", 5),
-				array("Deep Sea Kog'Maw", 6),
-				array("Jurassic Kog'Maw", 7),
+						  array("Lion Dance Kog'Maw", 5),
+						  array("Deep Sea Kog'Maw", 6),
+						  array("Jurassic Kog'Maw", 7),
+						  array("Battlecast Kog'Maw", 8),
                       )
 
           ), 	
@@ -484,17 +545,19 @@ $champion_array = array(
                           array("Wicked LeBlanc", 1),
                           array("Prestigious LeBlanc", 2),
                           array("Mistletoe LeBlanc", 3),
+						  array("Ravenborn LeBlanc", 4),
                       )
 
           ), 	
 
 "Lee Sin" => array ( 64, array(
-				array("Original Lee Sin", 0),
+						  array("Original Lee Sin", 0),
                           array("Traditional Lee Sin", 1),
                           array("Acolyte Lee Sin", 2),
                           array("Dragon Fist Lee Sin", 3),
                           array("Muay Thai Lee Sin", 4),
                           array("Pool Party Lee Sin", 5), 
+						  array("SKT T1 Lee Sin", 6),
                       )
 
           ), 	
@@ -512,6 +575,7 @@ $champion_array = array(
 "Lissandra" => array ( 127, array(
                           array("Original Lissandra", 0),
                           array("Bloodstone Lissandra", 1),
+						  array("Blade Queen Lissandra", 2),
                       )
 
           ), 	
@@ -519,6 +583,7 @@ $champion_array = array(
 "Lucian" => array ( 236, array(
                           array("Original Lucian", 0),
                           array("Hired Gun Lucian", 1),
+						  array("Striker Lucian", 2),
                       )
 
           ), 	
@@ -539,7 +604,7 @@ $champion_array = array(
                           array("Spellthief Lux", 2),
                           array("Commando Lux", 3),
                           array("Imperial Lux", 4), 
-				array("Steel Legion Lux", 5),
+						  array("Steel Legion Lux", 5),
                       )
 
           ), 	
@@ -550,7 +615,8 @@ $champion_array = array(
                           array("Coral Reef Malphite", 2),
                           array("Marble Malphite", 3),
                           array("Obsidian Malphite", 4), 
-				array("Glacial Malphite", 5),
+						  array("Glacial Malphite", 5),
+						  array("Mecha Malphite", 6),
                       )
 
           ), 	
@@ -561,16 +627,18 @@ $champion_array = array(
                           array("Shadow Prince Malzahar", 2),
                           array("Djinn Malzahar", 3),
                           array("Overlord Malzahar", 4), 
+						  array("Snow Day Malzahar", 5),
                       )
 
           ), 	
 
 "Maokai" => array ( 57, array(
-				array("Original Maokai", 0),
+						  array("Original Maokai", 0),
                           array("Charred Maokai", 1),
                           array("Totemic Maokai", 2),
                           array("Festive Maokai", 3),
                           array("Haunted Maokai", 4),
+						  array("Goalkeeper Maokai", 5),
                       )
 
           ), 	
@@ -581,7 +649,7 @@ $champion_array = array(
                           array("Chosen Master Yi", 2),
                           array("Ionia Master Yi", 3),
                           array("Samurai Master Yi", 4), 
-				array("Headhunter Master Yi", 5),
+						  array("Headhunter Master Yi", 5),
                       )
 
           ), 	
@@ -592,8 +660,9 @@ $champion_array = array(
                           array("Waterloo Miss Fortune", 2),
                           array("Secret Agent Miss Fortune", 3),
                           array("Candy Cane Miss Fortune", 4), 
-				array("Road Warrior Miss Fortune", 5),
-				array("Mafia Miss Fortune", 6),
+						  array("Road Warrior Miss Fortune", 5),
+						  array("Mafia Miss Fortune", 6),
+						  array("Arcade Miss Fortune", 7),
                       )
 
           ), 	
@@ -614,7 +683,8 @@ $champion_array = array(
                           array("Sinful Succulence Morgana", 2),
                           array("Blade Mistress Morgana", 3),
                           array("Blackthorn Morgana", 4), 
-				array("Ghost Bride Morgana", 5),
+						  array("Ghost Bride Morgana", 5),
+						  array("Victorious Morgana", 6),
                       )
 
           ), 	
@@ -622,6 +692,7 @@ $champion_array = array(
 "Nami" => array ( 267, array(
                           array("Original Nami", 0),
                           array("Koi Nami", 1),
+						  array("River Spirit Nami", 2),
                       )
 
           ), 	
@@ -632,7 +703,7 @@ $champion_array = array(
                           array("Pharaoh Nasus", 2),
                           array("Dreadknight Nasus", 3),
                           array("Riot K-9 Nasus", 4), 
-				array("Infernal Nasus", 5),
+						  array("Infernal Nasus", 5),
                       )
 
           ), 	
@@ -652,8 +723,8 @@ $champion_array = array(
                           array("Leopard Nidalee", 2),
                           array("French Maid Nidalee", 3),
                           array("Pharaoh Nidalee", 4), 
-				array("Bewitching Nidalee", 5),
-				array("Headhunter Nidalee", 6),
+						  array("Bewitching Nidalee", 5),
+						  array("Headhunter Nidalee", 6),
                       )
 
           ), 	
@@ -664,7 +735,7 @@ $champion_array = array(
                           array("Void Nocturne", 2),
                           array("Ravager Nocturne", 3),
                           array("Haunting Nocturne", 4), 
-				array("Eternum Nocturne", 5),
+						  array("Eternum Nocturne", 5),
                       )
 
           ), 	
@@ -675,8 +746,8 @@ $champion_array = array(
                           array("Workshop Nunu", 2),
                           array("Grungy Nunu", 3),
                           array("Nunu Bot", 4), 
-				array("Demolisher Nunu", 5),
-				array("TPA Nunu", 6),
+						  array("Demolisher Nunu", 5),
+						  array("TPA Nunu", 6),
                       )
 
           ), 	
@@ -697,6 +768,7 @@ $champion_array = array(
                           array("Sewn Chaos Orianna", 2),
                           array("Bladecraft Orianna", 3),
                           array("TPA Orianna", 4), 
+						  array("Winter Wonder Orianna", 5),
                       )
 
           ), 	
@@ -707,7 +779,8 @@ $champion_array = array(
                           array("Ruthless Pantheon", 2),
                           array("Perseus Pantheon", 3),
                           array("Full Metal Pantheon", 4), 
-				array("Glaive Warrior Pantheon", 5),
+						  array("Glaive Warrior Pantheon", 5),
+						  array("Dragonslayer Pantheon", 6),
                       )
 
           ), 	
@@ -718,15 +791,16 @@ $champion_array = array(
                           array("Lollipoppy", 2),
                           array("Blacksmith Poppy", 3),
                           array("Ragdoll Poppy", 4), 
-				array("Battle Regalia Poppy", 5),
-				array("Scarlet Hammer Poppy", 6),
+						  array("Battle Regalia Poppy", 5),
+						  array("Scarlet Hammer Poppy", 6),
                       )
 
           ), 	
-
+	
 "Quinn" => array ( 133, array(
                           array("Original Quinn", 0),
                           array("Phoenix Quinn", 1),
+						  array("Woad Scout Quinn", 2),
                       )
 
           ), 	
@@ -737,20 +811,27 @@ $champion_array = array(
                           array("Chrome Rammus", 2),
                           array("Molten Rammus", 3),
                           array("Freljord Rammus", 4), 
-				array("Ninja Rammus", 5),
-				array("Full Metal Rammus", 6),
+						  array("Ninja Rammus", 5),
+						  array("Full Metal Rammus", 6),
                       )
 
           ), 	
 
+"Rek'Sai" => array ( 421, array(
+						  array("Original Rek'Sai", 0),
+						  array("Eternum Rek'Sai", 1),
+					  )
+		  ),
+				  
+		  
 "Renekton" => array ( 58, array(
                           array("Original Renekton", 0),
                           array("Galactic Renekton", 1),
                           array("Outback Renekton", 2),
                           array("Bloodfury Renekton", 3),
                           array("Rune Wars Renekton", 4), 
-				array("Scorched Earth Renekton", 5),
-				array("Pool Party Renekton", 6),
+						  array("Scorched Earth Renekton", 5),
+						  array("Pool Party Renekton", 6),
                       )
 
           ), 	
@@ -758,6 +839,7 @@ $champion_array = array(
 "Rengar" => array ( 107, array(
                           array("Original Rengar", 0),
                           array("Hunter Rengar", 1),
+						  array("Night Hunter Rengar", 2),
                       )
 
           ), 	
@@ -768,7 +850,7 @@ $champion_array = array(
                           array("Crimson Elite Riven", 2),
                           array("Battle Bunny Riven", 3),
                           array("Championship Riven", 4), 
-				array("Dragonblade Riven", 5),
+						  array("Dragonblade Riven", 5),
                       )
 
           ), 	
@@ -777,6 +859,7 @@ $champion_array = array(
                           array("Original Rumble", 0),
                           array("Rumble in the Jungle", 1),
                           array("Bilgerat Rumble", 2),
+						  array("Super Galaxy Rumble", 3),
                       )
 
           ), 	
@@ -787,10 +870,10 @@ $champion_array = array(
                           array("Tribal Ryze", 2),
                           array("Uncle Ryze", 3),
                           array("Triumphant Ryze", 4), 
-				array("Professor Ryze", 5),
-				array("Zombie Ryze", 6),
-				array("Dark Crystal Ryze", 7),
-				array("Pirate Ryze", 8),
+						  array("Professor Ryze", 5),
+						  array("Zombie Ryze", 6),
+						  array("Dark Crystal Ryze", 7),
+						  array("Pirate Ryze", 8),
                       )
 
           ), 	
@@ -801,6 +884,7 @@ $champion_array = array(
                           array("Darksider Sejuani", 2),
                           array("Traditional Sejuani", 3),
                           array("Bear Cavalry Sejuani", 4), 
+						  array("Poro Rider Sejuani", 5),
                       )
 
           ), 	
@@ -811,8 +895,8 @@ $champion_array = array(
                           array("Royal Shaco", 2),
                           array("Nutcracko", 3),
                           array("Workshop Shaco", 4), 
-				array("Asylum Shaco", 5),
-				array("Masked Shaco", 6),
+						  array("Asylum Shaco", 5),
+						  array("Masked Shaco", 6),
                       )
 
           ), 	
@@ -823,8 +907,8 @@ $champion_array = array(
                           array("Yellow Jacket Shen", 2),
                           array("Surgeon Shen", 3),
                           array("Blood Moon Shen", 4), 
-				array("Warlord Shen", 5),
-				array("TPA Shen", 6),
+					      array("Warlord Shen", 5),
+						  array("TPA Shen", 6),
                       )
 
           ), 	
@@ -835,6 +919,7 @@ $champion_array = array(
                           array("Boneclaw Shyvana", 2),
                           array("Darkflame Shyvana", 3),
                           array("Ice Drake Shyvana", 4), 
+						  array("Championship Shyvana", 5),
                       )
 
           ), 	
@@ -845,8 +930,8 @@ $champion_array = array(
                           array("Hextech Singed", 2),
                           array("Surfer Singed", 3),
                           array("Mad Scientist Singed", 4), 
-				array("Augmented Singed", 5),
-				array("Snow Day Singed", 6),
+						  array("Augmented Singed", 5),
+						  array("Snow Day Singed", 6),	
                       )
 
           ), 	
@@ -867,8 +952,8 @@ $champion_array = array(
                           array("Spectacular Sivir", 2),
                           array("Huntress Sivir", 3),
                           array("Bandit Sivir", 4), 
-				array("PAX Sivir", 5),
-				array("Snowstorm Sivir", 6),
+						  array("PAX Sivir", 5),
+						  array("Snowstorm Sivir", 6),
                       )
 
           ), 	
@@ -877,6 +962,7 @@ $champion_array = array(
                           array("Original Skarner", 0),
                           array("Sandscourge Skarner", 1),
                           array("Earthrune Skarner", 2),
+						  array("Battlecast Skarner", 3),
                       )
 
           ), 	
@@ -887,7 +973,7 @@ $champion_array = array(
                           array("Pentakill Sona", 2),
                           array("Silent Night Sona", 3),
                           array("Guqin Sona", 4), 
-				array("Arcade Sona", 5),
+						  array("Arcade Sona", 5),
                       )
 
           ), 	
@@ -897,6 +983,7 @@ $champion_array = array(
                           array("Dryad Soraka", 1),
                           array("Divine Soraka", 2),
                           array("Celestine Soraka", 3),
+						  array("Reaper Soraka", 4),
                       )
 
           ), 	
@@ -913,6 +1000,7 @@ $champion_array = array(
 "Syndra" => array ( 134, array(
                           array("Original Syndra", 0),
                           array("Justicar Syndra", 1),
+						  array("Atlantean Syndra", 2),
                       )
 
           ), 	
@@ -941,9 +1029,9 @@ $champion_array = array(
                           array("Recon Teemo", 2),
                           array("Badger Teemo", 3),
                           array("Astronaut Teemo", 4), 
-				array("Cottontail Teemo", 5),
-				array("Super Teemo", 6),
-				array("Panda Teemo", 7),
+						  array("Cottontail Teemo", 5),
+						  array("Super Teemo", 6),
+						  array("Panda Teemo", 7),
                       )
 
           ), 	
@@ -952,24 +1040,19 @@ $champion_array = array(
                           array("Original Thresh", 0),
                           array("Deep Terror Thresh", 1),
                           array("Championship Thresh", 2),
+						  array("Blood Moon Thresh", 3),
                       )
 
           ), 	
 
-"Transparent" => array ( 0, array(
-                          array("No skin available", 0),
-                      )
-
-          ),    
-    
 "Tristana" => array ( 18, array(
                           array("Original Tristana", 0),
                           array("Riot Girl Tristana", 1),
                           array("Eartnest Elf Tristana", 2),
                           array("Firefighter Tristana", 3),
                           array("Guerilla Tristana", 4), 
-				array("Buccaneer Tristana", 5),
-				array("Rocketeer Tristana", 6),
+						  array("Buccaneer Tristana", 5),
+						  array("Rocketeer Tristana", 6),
                       )
 
           ), 	
@@ -979,6 +1062,7 @@ $champion_array = array(
                           array("Lil' Slugger Trundle", 1),
                           array("Junkyard Trundle", 2),
                           array("Traditional Trundle", 3),
+						  array("Constable Trundle", 4),
                       )
 
           ), 	
@@ -989,8 +1073,8 @@ $champion_array = array(
                           array("King Tryndamere", 2),
                           array("Viking Tryndamere", 3),
                           array("Demonblade Tryndamere", 4), 
-				array("Sultan Tryndamere", 5),
-				array("Warring Kingdoms Tryndamere", 6),
+						  array("Sultan Tryndamere", 5),
+						  array("Warring Kingdoms Tryndamere", 6),
                       )
 
           ), 	
@@ -1001,9 +1085,10 @@ $champion_array = array(
                           array("Jack of Hearts", 2),
                           array("The Magnificent Twisted Fate", 3),
                           array("Tango Twisted Fate", 4), 
-				array("High Noon Twisted Fate", 5),
-				array("Musketeer Twisted Fate", 6),
-				array("Underworld Twisted Fate", 7),
+						  array("High Noon Twisted Fate", 5),
+						  array("Musketeer Twisted Fate", 6),
+						  array("Underworld Twisted Fate", 7),
+						  array("Red Card Twisted Fate", 8),
                       )
 
           ), 	
@@ -1014,7 +1099,8 @@ $champion_array = array(
                           array("Whistler Village Twitch", 2),
                           array("Medieval Twitch", 3),
                           array("Gangster Twitch", 4), 
-				array("Vandal Twitch", 5),
+						  array("Vandal Twitch", 5),
+						  array("Pickpocket Twitch", 6),
                       )
 
           ), 	
@@ -1041,6 +1127,7 @@ $champion_array = array(
                           array("Original Varus", 0),
                           array("Blight Crystal Varus", 1),
                           array("Arclight Varus", 2),
+						  array("Arctic Ops Varus", 3),
                       )
 
           ), 	
@@ -1051,6 +1138,7 @@ $champion_array = array(
                           array("Aristocrat Vayne", 2),
                           array("Dragonslayer Vayne", 3),
                           array("Heartseeker Vayne", 4), 
+						  array("SKT T1 Vayne", 5),
                       )
 
           ), 	
@@ -1061,17 +1149,26 @@ $champion_array = array(
                           array("Curling Veigar", 2),
                           array("Veigar Greybeard", 3),
                           array("Leprechaun Veigar", 4), 
-				array("Baron Von Veigar", 5),
-				array("Superb Villian Veigar", 6),
-				array("Bad Santa Veigar", 7),
+						  array("Baron Von Veigar", 5),
+						  array("Superb Villian Veigar", 6),
+						  array("Bad Santa Veigar", 7),
+						  array("Final Boss Veigar", 8),
                       )
 
           ), 	
+ 
+ "Vel'Koz" => array ( 161, array(
+						  array("Original Vel'Koz", 0),
+						  array("Battlecast Vel'Koz", 1),
+					  )
+		  ),
+						  
  
  "Vi" => array ( 254, array(
                           array("Original Vi", 0),
                           array("Neon Strike Vi", 1),
                           array("Officer Vi", 2),
+						  array("Debonair Vi", 3),
                       )
 
           ), 	
@@ -1091,7 +1188,8 @@ $champion_array = array(
                           array("Marquis Vladimir", 2),
                           array("Nosferatu Vladimir", 3),
                           array("Vandal Vladimir", 4), 
-				                  array("Blood Lord Vladimir", 5),
+				          array("Blood Lord Vladimir", 5),
+						  array("Soulstealer Vladimir", 6),
                       )
 
           ), 	
@@ -1101,6 +1199,7 @@ $champion_array = array(
                           array("Thunder Lord Volibear", 1),
                           array("Northern Storm Volibear", 2),
                           array("Runeguard Volibear", 3),
+						  array("Captain Volibear", 4),
                       )
 
           ), 	
@@ -1111,9 +1210,9 @@ $champion_array = array(
                           array("Urf the Manatee", 2),
                           array("Big Bad Warwick", 3),
                           array("Tundra Hunter Warwick", 4), 
-                  				array("Feral Warwick", 5),
-                  				array("Firefang Warwick", 6),
-                  				array("Hyena Warwick", 7),
+                  		  array("Feral Warwick", 5),
+                  		  array("Firefang Warwick", 6),
+                  		  array("Hyena Warwick", 7),
                       )
 
           ), 	
@@ -1123,6 +1222,7 @@ $champion_array = array(
                           array("Volcanic Wukong", 1),
                           array("General Wukong", 2),
                           array("Jade Dragon Wukong", 3),
+						  array("Underworld Wukong", 4),
                       )
 
           ), 	
@@ -1142,7 +1242,7 @@ $champion_array = array(
                           array("Imperial Xin Zhao", 2),
                           array("Viscero Xin Zhao", 3),
                           array("Winged Hussar Xin Zhao", 4), 
-				array("Warring Kingdoms Xin Zhao", 5),
+						  array("Warring Kingdoms Xin Zhao", 5),
                       )
 
           ), 	
@@ -1150,6 +1250,7 @@ $champion_array = array(
 "Yasuo" => array ( 157, array(
                           array("Original Yasuo", 0),
                           array("Desperado Yasuo", 1),
+						  array("Project Yasuo", 2),
                       )
 
           ), 	
@@ -1172,6 +1273,7 @@ $champion_array = array(
 "Zed" => array ( 238, array(
                           array("Original Zed", 0),
                           array("Bladestorm Zed", 1),
+						  array("SKT T1 Zed", 2),
                       )
 
           ), 	
@@ -1200,6 +1302,7 @@ $champion_array = array(
                           array("Original Zyra", 0),
                           array("Wildfire Zyra", 1),
                           array("Haunted Zyra", 2),
+						  array("SKT T1 Zyra", 3),
                       )
 
           ), 	
