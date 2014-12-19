@@ -889,7 +889,7 @@ $champion_array = array(
 
           ), 	
 		  
-"Shaco" => array ( 34, array(
+"Shaco" => array ( 35, array(
                           array("Original Shaco", 0),
                           array("Mad Hatter Shaco", 1),
                           array("Royal Shaco", 2),
