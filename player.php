@@ -53,7 +53,7 @@ function loadPlayer($name, $region) {
         $this->region = $region;
         
         // using name given to script - to get player instance
-        $addr = 'http://'.$this->region.'.api.pvp.net/api/lol/'.$region.'/v1.4/summoner/by-name/'.$name.'?api_key='.API_KEY;
+        $addr = 'https://'.$this->region.'.api.pvp.net/api/lol/'.$region.'/v1.4/summoner/by-name/'.$name.'?api_key='.API_KEY;
         
         $data = $this->getData($addr);
         
@@ -71,7 +71,7 @@ function loadPlayer($name, $region) {
         // LEAGUE 2.5
         $id = $this->id;
         
-        $addr = 'http://'.$this->region.'.api.pvp.net/api/lol/'.$this->region.'/v2.5/league/by-summoner/'.$id.'?api_key='.API_KEY;
+        $addr = 'https://'.$this->region.'.api.pvp.net/api/lol/'.$this->region.'/v2.5/league/by-summoner/'.$id.'?api_key='.API_KEY;
         
         $data = $this->getData($addr);
         
@@ -83,6 +83,7 @@ function loadPlayer($name, $region) {
         }
         $this->rank_roman = 0;
         $this->lp = 0;
+        
         foreach($j[strval($this->id)] as $table) {
             if ($table["queue"] == "RANKED_SOLO_5x5") {
                 $this->league = $table["name"];
@@ -106,7 +107,7 @@ function loadPlayer($name, $region) {
         $id = $this->id;
         
         // get detailed ranked stats by ID
-        $addr = 'http://'.$this->region.'.api.pvp.net/api/lol/'.$this->region.'/v1.3/stats/by-summoner/'.$id.'/ranked?season=SEASON4&api_key='.API_KEY;
+        $addr = 'https://'.$this->region.'.api.pvp.net/api/lol/'.$this->region.'/v1.3/stats/by-summoner/'.$id.'/ranked?season=SEASON4&api_key='.API_KEY;
         
         $data = $this->getData($addr);
         
@@ -139,6 +140,8 @@ function loadPlayer($name, $region) {
         $handle = curl_init($url);
         curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
         
+        curl_setopt($handle,CURLOPT_SSL_VERIFYPEER, false);
+        
         /* Get the HTML or whatever is linked in $url. */
         $response = curl_exec($handle);
         
@@ -152,6 +155,18 @@ function loadPlayer($name, $region) {
         $this->check(0);
         
         return $response;
+    }
+    
+    function getData2($url) {
+        $ch = curl_init();
+        $timeout = 5;
+        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $data = curl_exec($ch);
+        curl_close($ch);
+        return $data;
     }
     
     function r2a($roman) {
