@@ -267,7 +267,7 @@ $region_array = array(
                         <p id="introduction"><strong>Welcome summoner</strong>, you have found yourself on the LoL signature maker, where you can make your own signature
                             featuring the stats you have managed to achieve in the ranked games. Just like this:</p>                        
                         <br>                      
-                        <div id="signature"><img src="<?php print(WEB); ?>Torrda_eune_238_1.png" title="Torrda@EUNE" alt="signature"/></div>
+                        <div id="signature"><img src="<?php print(WEB); ?>Torrda_eune_238_2.png" title="Torrda@EUNE" alt="signature"/></div>
                         <?php
                     }
                     ?>
