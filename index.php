@@ -265,7 +265,7 @@ $region_array = array(
                     } else {
                         ?>
                         <p id="introduction"><strong>Welcome summoner</strong>, you have found yourself on the LoL signature maker, where you can make your own signature
-                            featuring the stats you have managed to achieve in the ranked games. Just like this:</p>                        
+                            featuring the stats you have managed to achieve in the ranked games. It will look just like this:</p>                        
                         <br>                      
                         <div id="signature"><img src="<?php print(WEB); ?>Torrda_eune_238_2.png" title="Torrda@EUNE" alt="signature"/></div>
                         <?php
@@ -289,8 +289,7 @@ $region_array = array(
                                 <h4>TIP:</h4><p> To find a champion quicker, open the selectbox and press the first few letters.</p>
                             </div>
                             <div>
-                                <h4>INFO:</h4><p> It will only work if you are placed in Season 4 ranked!
-                                    Your signature should load really fast, if you are from one of these. 
+                                <h4>INFO:</h4><p> It will only work if you are placed in Season 5 ranked!
                             </div>
                             <div>
                                 <h4>STATS:</h4><p> There have been <?php print($i) ?> signatures generated in the last 24 hours!</p>
