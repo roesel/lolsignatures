@@ -286,15 +286,6 @@ $region_array = array(
                         </div>-->
                         <div class="flexcontainer-center">
                             <div>
-                                <h4>TIP:</h4><p> To find a champion quicker, open the selectbox and press the first few letters.</p>
-                            </div>
-                            <div>
-                                <h4>INFO:</h4><p> It will only work if you are placed in Season 5 ranked!
-                            </div>
-                                <p></p>
-                            <div>
-                            </div>
-                            <div style="width:350px;">
                                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                 <!-- Lolsigs -->
                                 <ins class="adsbygoogle"
@@ -305,6 +296,14 @@ $region_array = array(
                                 <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
                                 </script>
+                            </div>
+                        </div>
+                        <div class="flexcontainer-center">
+                            <div>
+                                <h4>TIP:</h4><p> To find a champion quicker, open the selectbox and press the first few letters.</p>
+                            </div>
+                            <div>
+                                <h4>INFO:</h4><p> It will only work if you are placed in Season 5 ranked!
                             </div>
                             <div>
                                 <h4>STATS:</h4><p> There have been <?php print($i) ?> signatures generated in the last 24 hours!</p>
