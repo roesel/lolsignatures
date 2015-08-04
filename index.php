@@ -293,7 +293,7 @@ $region_array = array(
                             </div>
                             <div>
                             </div>
-                            <div style="width:250px;height:250px;">
+                            <div style="width:350px;height:350px;">
                                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                 <!-- Lolsigs -->
                                 <ins class="adsbygoogle"
