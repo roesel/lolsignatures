@@ -291,9 +291,10 @@ $region_array = array(
                             <div>
                                 <h4>INFO:</h4><p> It will only work if you are placed in Season 5 ranked!
                             </div>
+                                <p></p>
                             <div>
                             </div>
-                            <div style="width:350px;height:350px;">
+                            <div style="width:350px;">
                                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                 <!-- Lolsigs -->
                                 <ins class="adsbygoogle"
