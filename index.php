@@ -285,7 +285,7 @@ $region_array = array(
                             <p>It only works if you are placed in a league in Season 4!</p>
                         </div>-->
                         <div class="flexcontainer-center">
-                            <div>
+                            <div style="width:800px;">
                                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                 <!-- Lolsigs -->
                                 <ins class="adsbygoogle"
