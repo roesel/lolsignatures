@@ -292,6 +292,18 @@ $region_array = array(
                                 <h4>INFO:</h4><p> It will only work if you are placed in Season 5 ranked!
                             </div>
                             <div>
+                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                <!-- Lolsigs -->
+                                <ins class="adsbygoogle"
+                                     style="display:block"
+                                     data-ad-client="ca-pub-7860058313368973"
+                                     data-ad-slot="6054124582"
+                                     data-ad-format="auto"></ins>
+                                <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            </div>
+                            <div>
                                 <h4>STATS:</h4><p> There have been <?php print($i) ?> signatures generated in the last 24 hours!</p>
                             </div>
                             <div>
