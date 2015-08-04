@@ -291,8 +291,9 @@ $region_array = array(
                             <div>
                                 <h4>INFO:</h4><p> It will only work if you are placed in Season 5 ranked!
                             </div>
-                            <div style="width:450px;height:450px;">
-                                
+                            <div>
+                            </div>
+                            <div style="width:250px;height:250px;">
                                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                 <!-- Lolsigs -->
                                 <ins class="adsbygoogle"
@@ -308,7 +309,7 @@ $region_array = array(
                                 <h4>STATS:</h4><p> There have been <?php print($i) ?> signatures generated in the last 24 hours!</p>
                             </div>
                             <div>
-                                <h4>REDDIT:</h4><p> If you have doubts, questions, ideas or bugs to report, do so here: <a href="http://redd.it/1wpwls">on reddit</a>!</p>
+                                <h4>REDDIT:</h4><p> If you have doubts, questions, ideas or bugs to report, do so here: <br/><a href="http://redd.it/1wpwls">on reddit</a>!</p>
                             </div>
                         </div>
 
