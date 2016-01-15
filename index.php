@@ -161,7 +161,12 @@ $region_array = array(
                                 <select name="region" required="required">
                                     <option value="" disabled selected class="select-placeholder">Region</option>
                                     <?php
-                                    foreach ($region_array as $reg_key => $reg_name) {
+                                    
+									if (!isset($region)) {
+										$region = "";
+									}
+									
+									foreach ($region_array as $reg_key => $reg_name) {
                                         $reg_selected = '';
                                         if ($reg_key == $region) {
                                             $reg_selected = 'selected';
@@ -174,7 +179,15 @@ $region_array = array(
                                     <option value="0">Transparent</option>
                                     <?php
                                     include_once("champion_array.php");
-                                    foreach ($champion_array as $champion_key => $id) {
+                                    
+									if (!isset($skin)) {
+										$skin = 0;
+									}
+									if (!isset($champion)) {
+										$champion = 0;
+									}
+									
+									foreach ($champion_array as $champion_key => $id) {
                                         $champ_selected = '';
                                         if ($id[0] == $champion) {
                                             $skin_array = $id[1];
@@ -185,13 +198,6 @@ $region_array = array(
                                     ?>
                                 </select>                                
                                 <?php
-                                if (!isset($skin)) {
-                                    $skin = 0;
-                                }
-                                if (!isset($champion)) {
-                                    $champion = 0;
-                                }
-
                                 $skin_disabled = '';
                                 if ($champion == 0) {
                                     $skin_disabled = 'disabled';
