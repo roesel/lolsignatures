@@ -115,7 +115,7 @@ try {
     } else {
         Header("Content-type: image/png");                      
         Header("Cache-Control: max-age=0");       // Browser caching
-        readfile("img/".$e->getMessage().".jpg");
+        readfile("img/".$e->getMessage().".png");
         exit();
     }
 }
