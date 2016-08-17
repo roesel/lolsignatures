@@ -1,5 +1,5 @@
 <?php 
-// Last update: 20-08-2015 by Viitrexx
+// Last update: 17-08-2016 by Carlxz
 
 /*
  "" => array ( , array(
@@ -113,6 +113,14 @@ $champion_array = array(
 
           ), 	
 
+"Aurelion Sol" => array ( 136, array(
+                          array("Original Aurelion Sol", 0),
+                          array("Ashen Lord Aurelion Sol", 1),
+
+			 )
+
+          ), 
+		  
 "Azir" => array ( 268, array(
 						  array("Original Azir", 0),
 						  array("Galactic Azir", 1),
@@ -418,6 +426,13 @@ $champion_array = array(
 
           ), 		
 
+"Illaoi" => array ( 420, array(
+                          array("Original Illaoi", 0),
+                          array("Void Bringer Illaoi", 1),
+                      )
+
+          ), 	
+		  
 "Irelia" => array ( 39, array(
                           array("Original Irelia", 0),
                           array("Nightblade Irelia", 1),
@@ -477,6 +492,13 @@ $champion_array = array(
 
           ), 	
 
+"Jhin" => array ( 202, array(
+                          array("Original Jhin", 0),
+                          array("High Noon Jhin", 1),
+                      )
+
+          ), 
+		  
 "Jinx" => array ( 222, array(
                           array("Original Jinx", 0),
                           array("Mafia Jinx", 1),
@@ -570,6 +592,21 @@ $champion_array = array(
 
           ), 	
 
+"Kindred" => array ( 203, array(
+                          array("Original Kha'Zix", 0),
+                          array("Shadowfire Kindred", 1),
+						  array("Super Galaxy Kindred", 2),
+                      )
+
+          ), 
+		  
+"Kled" => array ( 240, array(
+                          array("Original Kled", 0),
+                          array("Sir Kled", 1),
+                      )
+
+          ), 
+		  
 "Kog'Maw" => array ( 96, array(
                           array("Original Kog'Maw", 0),
                           array("Caterpillar Kog'Maw", 1),
@@ -1082,7 +1119,13 @@ $champion_array = array(
 						  array("Master Chef Tahm Kench", 1),
 					  )
 		  ),
-				  
+			
+"Taliyah" => array ( 163, array(
+						  array("Original Taliyah", 0),
+						  array("Freljord Taliyah", 1),
+					  )
+		  ),
+			
 "Talon" => array ( 91, array(
                           array("Original Talon", 0),
                           array("Renegade Talon", 1),
