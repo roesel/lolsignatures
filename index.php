@@ -309,7 +309,7 @@ $region_array = array(
                                 <h4>TIP:</h4><p> To find a champion quicker, open the selectbox and press the first few letters.</p>
                             </div>
                             <div>
-                                <h4>INFO:</h4><p> It will only work if you are placed in Season 5 ranked!
+                                <h4>INFO:</h4><p> It will only work if you are placed in Season 6 ranked!
                             </div>
                             <div>
                                 <h4>STATS:</h4><p> There have been <?php print($i) ?> signatures generated in the last 24 hours!</p>
