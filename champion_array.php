@@ -553,6 +553,7 @@ $champion_array = array(
 						  array("Original Kalista", 0),
 						  array("Bloodmoon Kalista", 1),
 						  array("Championship Kalista", 2),
+						  array("SKT T1 Kalista", 3),
 					  )
 		  ),
 				  
