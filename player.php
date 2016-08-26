@@ -107,7 +107,7 @@ function loadPlayer($name, $region) {
         $id = $this->id;
         
         // get detailed ranked stats by ID
-        $addr = 'https://'.$this->region.'.api.pvp.net/api/lol/'.$this->region.'/v1.3/stats/by-summoner/'.$id.'/ranked?season=SEASON4&api_key='.API_KEY;
+        $addr = 'https://'.$this->region.'.api.pvp.net/api/lol/'.$this->region.'/v1.3/stats/by-summoner/'.$id.'/ranked?api_key='.API_KEY;
         
         $data = $this->getData($addr);
         
