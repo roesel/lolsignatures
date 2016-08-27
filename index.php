@@ -315,7 +315,7 @@ $region_array = array(
                                 <h4>STATS:</h4><p> There have been <?php print($i) ?> signatures generated in the last 24 hours!</p>
                             </div>
                             <div>
-                                <h4>REDDIT:</h4><p> If you have doubts, questions, ideas or bugs to report, do so here: <br/><a href="http://redd.it/1wpwls">on reddit</a>!</p>
+                                <h4>REDDIT:</h4><p> If you have doubts, questions, ideas or bugs to report, do so here: <br/><a href="https://redd.it/4zsv1y">on reddit</a>!</p>
                             </div>
                         </div>
 
