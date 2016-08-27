@@ -259,7 +259,7 @@ $region_array = array(
                             <div>
                                 <div style="display:inline-block; margin: 0 64px;">
                                     <h3>Need more info?</h3>
-                                    <p>Have a look at the post <a href='http://redd.it/1wpwls'>on reddit</a>!</p>
+                                    <p>Have a look at the post <a href='https://redd.it/4zsv1y'>on reddit</a>!</p>
                                 </div>
                                 <!--<div style="display:inline-block; margin: 0 64px;">
                                     <h3>Not exactly what you wanted?</h3>
