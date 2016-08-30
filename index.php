@@ -261,10 +261,10 @@ $region_array = array(
                                     <h3>Need more info?</h3>
                                     <p>Have a look at the post <a href='https://redd.it/4zsv1y'>on reddit</a>!</p>
                                 </div>
-                                <!--<div style="display:inline-block; margin: 0 64px;">
-                                    <h3>Not exactly what you wanted?</h3>
-                                    <p><a href='javascript:history.back()'>&larr; Go back and try again.</a></p>
-                                </div>-->
+                                <div style="display:inline-block; margin: 0 64px;">
+                                    <h3>You might also like:</h3>
+                                    <p>See how you beat the #1 player in your region: <a href='<?php print 'http://lol-beat-best.com/#!'.$region.'/'.$name; ?>'>www.lol-beat-best.com</a></p>
+                                </div>
                             </div>
                         </div>
                         <?php
