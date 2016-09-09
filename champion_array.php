@@ -42,6 +42,7 @@ $champion_array = array(
 						  array("Blood Moon Akali", 5),
 						  array("Silverfang Akali", 6),
 						  array("Headhunter Akali", 7),
+						  array("Sashimi Akali", 8),
                       )
 
           ),    		
@@ -709,6 +710,7 @@ $champion_array = array(
 						  //array("Chroma Leona", 6),
 						  //array("Chroma Leona", 7),
 						  array("Project Leona", 8),
+						  array("Barbecue Leona", 8),
                       )
 
           ), 	
@@ -938,6 +940,7 @@ $champion_array = array(
                           array("Brolaf", 3),
                           array("Pentakill Olaf", 4),
 						  array("Marauder Olaf", 5),
+						  array("Butcher Olaf", 6),
                       )
 
           ), 	
@@ -963,6 +966,7 @@ $champion_array = array(
 						  array("Glaive Warrior Pantheon", 5),
 						  array("Dragonslayer Pantheon", 6),
 						  array("Slayer Pantheon", 7),
+						  array("Baker Pantheon", 8),
                       )
 
           ), 	
