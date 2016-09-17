@@ -18,12 +18,14 @@ body {
     background-image: url('img/wallpaper.jpg');
     background-position: center top;
     background-repeat: no-repeat;
+    background-size:cover;
 }
 
 #background-image-bottom {
     background-image: url('img/wallpaper.jpg');
     background-position: center bottom;
     background-repeat: no-repeat;
+    background-size:cover;
 }
 
 .warning.top {
