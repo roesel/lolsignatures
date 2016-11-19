@@ -1,11 +1,11 @@
 <?php
+
+
 //mb_internal_encoding("UTF-8");
 header('Content-type: text/html; charset=utf-8');
 mb_internal_encoding("UTF-8");
 
-
 include_once("player.php");
-
 
 /* gets the data from a URL */
 function get_data($url) {
@@ -315,13 +315,15 @@ if ($show_image) {
                unlink($path.$file);         
            }
         }
-        if (filesize($path.$file) <= 30000) {
-          if(is_file($path.$file)) {
-            if (preg_match('/\.png$/i', $file)) {
-              unlink($path.$file);
+        // Probably mopping of failed imgs?
+        if(is_file($path.$file)) {
+            if (filesize($path.$file) <= 30000) {
+                if (preg_match('/\.png$/i', $file)) {
+                    unlink($path.$file);
             }
           }
         }
      }
    } 
 }
+?>
