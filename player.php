@@ -48,7 +48,7 @@ class Player
     /*
       Gets the proper name and ID of a player under a specified name.
     */
-function loadPlayer($name, $region) {
+    function loadPlayer($name, $region) {
         // SUMMONER 1.4
         $this->region = $region;
         
@@ -59,10 +59,14 @@ function loadPlayer($name, $region) {
         
         // !! check for returned status !!
         $j = json_decode($data, True);
-        
+                
         // get ID and proper name
-        $this->name = $j[mb_strtolower($name)]["name"];
-        $this->id = $j[mb_strtolower($name)]["id"];
+        if (array_key_exists(mb_strtolower($name), $j)) {
+            $this->name = $j[mb_strtolower($name)]["name"];
+            $this->id = $j[mb_strtolower($name)]["id"];
+        } else {
+            $this->status = 404;
+        }
         
     }
 
