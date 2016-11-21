@@ -88,19 +88,23 @@ class Player
         $this->rank_roman = 0;
         $this->lp = 0;
         
-        foreach($j[strval($this->id)] as $table) {
-            if ($table["queue"] == "RANKED_SOLO_5x5") {
-                $this->league = $table["name"];
-                $this->tier = $table["tier"];
-                
-                foreach($table["entries"] as $num) {
-                    if ($num["playerOrTeamId"]==$id){
-                        $this->rank_roman = $num["division"];
-                        $this->lp = $num["leaguePoints"];
-                        $this->rank = $this->r2a($this->rank_roman);
+        if (array_key_exists(strval($this->id), $j)) {
+            foreach($j[strval($this->id)] as $table) {
+                if ($table["queue"] == "RANKED_SOLO_5x5") {
+                    $this->league = $table["name"];
+                    $this->tier = $table["tier"];
+                    
+                    foreach($table["entries"] as $num) {
+                        if ($num["playerOrTeamId"]==$id){
+                            $this->rank_roman = $num["division"];
+                            $this->lp = $num["leaguePoints"];
+                            $this->rank = $this->r2a($this->rank_roman);
+                        }
                     }
                 }
             }
+        } else {
+            $this->status = 404;
         }
         
     }
