@@ -61,7 +61,7 @@ class Player
         $j = json_decode($data, True);
                 
         // get ID and proper name
-        if (array_key_exists(mb_strtolower($name), $j)) {
+        if (!empty($j) && array_key_exists(mb_strtolower($name), $j)) {
             $this->name = $j[mb_strtolower($name)]["name"];
             $this->id = $j[mb_strtolower($name)]["id"];
         } else {
@@ -88,7 +88,7 @@ class Player
         $this->rank_roman = 0;
         $this->lp = 0;
         
-        if (array_key_exists(strval($this->id), $j)) {
+        if (!empty($j) && array_key_exists(strval($this->id), $j)) {
             foreach($j[strval($this->id)] as $table) {
                 if ($table["queue"] == "RANKED_SOLO_5x5") {
                     $this->league = $table["name"];
