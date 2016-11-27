@@ -101,6 +101,8 @@ class Player
                             $this->rank = $this->r2a($this->rank_roman);
                         }
                     }
+                } else {
+                    $this->status = 404;
                 }
             }
         } else {
