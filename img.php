@@ -310,7 +310,7 @@ if ($show_image) {
   $path = 'sigs_cache/';
   if ($handle = opendir($path)) {
      while (false !== ($file = readdir($handle))) {
-        if ((time()-filectime($path.$file)) > 86400) {  
+        if (file_exists($path.$file) && (time()-filectime($path.$file)) > 86400) {  
             if (preg_match('/\.png$/i', $file)) {
                unlink($path.$file);         
            }
