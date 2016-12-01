@@ -122,36 +122,28 @@ class Player
         $data = $this->getData($addr);
         
         $j = json_decode($data, True);
-        if (!empty($j)) {
-            foreach ($j["champions"] as $champion) {
-                if ($champion["id"]=="0") {
-                    $combined = $champion;
-                }
-            }        
-            
-            if (isset($combined)) {
-                $s = $combined["stats"];
-                
-                $stats = array();
-                
-                $wins = $s["totalSessionsWon"];
-                $losses = $s["totalSessionsLost"];
-                
-                $wratio = round(100*$wins/($wins+$losses),1);
-                
-                array_push($stats, array("Pentas", $s["totalPentaKills"]));  
-                array_push($stats, array("Win ratio", $wratio." %"));
-                array_push($stats, array("Kills", $s["totalChampionKills"]));
-                array_push($stats, array("Assists", $s["totalAssists"]));   
-                array_push($stats, array("Max Spree", $s["maxLargestKillingSpree"]));
-                
-                $this->stats = $stats;    
-            } else {
-                $this->status = 404;
-            }
-        } else {
-            $this->status = 404;
-        }
+        
+		foreach ($j["champions"] as $champion) {
+			if ($champion["id"]=="0") {
+				$combined = $champion;
+			}
+		}        
+        $s = $combined["stats"];
+        
+        $stats = array();
+        
+        $wins = $s["totalSessionsWon"];
+        $losses = $s["totalSessionsLost"];
+        
+        $wratio = round(100*$wins/($wins+$losses),1);
+        
+        array_push($stats, array("Pentas", $s["totalPentaKills"]));  
+        array_push($stats, array("Win ratio", $wratio." %"));
+        array_push($stats, array("Kills", $s["totalChampionKills"]));
+        array_push($stats, array("Assists", $s["totalAssists"]));   
+        array_push($stats, array("Max Spree", $s["maxLargestKillingSpree"]));
+        
+        $this->stats = $stats;    
     }
     
     function getData($url) {
