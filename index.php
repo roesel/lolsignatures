@@ -61,7 +61,7 @@ $region_array = array(
         <!--<meta http-equiv='Content-language' content='en'>-->
         <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <link rel='stylesheet' type='text/css' href='style.css'>
-        <link rel='stylesheet' type='text/css' href='form.css'>            
+        <link rel='stylesheet' type='text/css' href='form.css'>
     <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>-->
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/jquery.cookie.js"></script>
@@ -142,10 +142,10 @@ $region_array = array(
             <strong>WARNING:</strong> This is a test warning! (positive)
         </div>
         <div id="background-image-top">
-            <div id="background-top">                
+            <div id="background-top">
                 <div id="wrapper-top">
-                    <div id="content-top">                        
-                        <div id='form'> 
+                    <div id="content-top">
+                        <div id='form'>
                             <h1 id="page-title"><a href="<?php echo WEB ?>">League of Legends signature creator</a></h1>
                             <form id="data" method="POST">
                                 <?php
@@ -161,11 +161,11 @@ $region_array = array(
                                 <select name="region" required="required">
                                     <option value="" disabled selected class="select-placeholder">Region</option>
                                     <?php
-                                    
+
 									if (!isset($region)) {
 										$region = "";
 									}
-									
+
 									foreach ($region_array as $reg_key => $reg_name) {
                                         $reg_selected = '';
                                         if ($reg_key == $region) {
@@ -174,19 +174,19 @@ $region_array = array(
                                         print '<option value="' . $reg_key . '" ' . $reg_selected . '>' . $reg_name . '</option>';
                                     }
                                     ?>
-                                </select> 
+                                </select>
                                 <select name="champion" id="champion">
                                     <option value="0">Transparent</option>
                                     <?php
                                     include_once("champion_array.php");
-                                    
+
 									if (!isset($skin)) {
 										$skin = 0;
 									}
 									if (!isset($champion)) {
 										$champion = 0;
 									}
-									
+
 									foreach ($champion_array as $champion_key => $id) {
                                         $champ_selected = '';
                                         if ($id[0] == $champion) {
@@ -196,7 +196,7 @@ $region_array = array(
                                         print '<option value="' . $id[0] . '" ' . $champ_selected . '>' . $champion_key . '</option>';
                                     }
                                     ?>
-                                </select>                                
+                                </select>
                                 <?php
                                 $skin_disabled = '';
                                 if ($champion == 0) {
@@ -237,8 +237,8 @@ $region_array = array(
                         ?>
                         <div id="result">
                             <?php // image loading http://www.barrelny.com/blog/taking-control-of-imageloading/     ?>
-                            <div id="signature">                                
-                                <div class="img_wrapper">                                                                        
+                            <div id="signature">
+                                <div class="img_wrapper">
                                     <div class="css_spinner">
                                         <div class="half left">
                                             <div class="band"></div>
@@ -271,8 +271,8 @@ $region_array = array(
                     } else {
                         ?>
                         <p id="introduction"><strong>Welcome summoner</strong>, you have found yourself on the LoL signature maker, where you can make your own signature
-                            featuring the stats you have managed to achieve in the ranked games. It will look just like this:</p>                        
-                        <br>                      
+                            featuring the stats you have managed to achieve in the ranked games. It will look just like this:</p>
+                        <br>
                         <div id="signature"><img src="<?php print(WEB); ?>Ruzgud_eune_238_2.png" title="Ruzgud@EUNE" alt="Example signature"/></div>
                         <?php
                     }
@@ -281,15 +281,10 @@ $region_array = array(
             </div>
         </div>
         <div id="background-image-bottom">
-            <div id="background-bottom">                
+            <div id="background-bottom">
                 <div id="wrapper-bottom">
 
                     <div id="content-bottom">
-                        <!--<div class="warning content">
-                            <h3>WARNING:</h3>
-                            <p>This site uses the Riot API for all the data, ranked S4 only.</p>
-                            <p>It only works if you are placed in a league in Season 4!</p>
-                        </div>-->
                         <div class="flexcontainer-center">
                             <div style="width:800px;">
                                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -309,7 +304,7 @@ $region_array = array(
                                 <h4>TIP:</h4><p> To find a champion quicker, open the selectbox and press the first few letters.</p>
                             </div>
                             <div>
-                                <h4>INFO:</h4><p> It will only work if you are placed in Season 6 ranked!
+                                <h4>INFO:</h4><p> It will only work if you are placed in Season 7 ranked!
                             </div>
                             <div>
                                 <h4>STATS:</h4><p> There have been <?php print($i) ?> signatures generated in the last 24 hours!</p>
@@ -327,12 +322,12 @@ $region_array = array(
                 <div id="wrapper-footer">
                     <div id="content-footer">
                         <div id="footer">
-                            Signature creator itself was written by <strong><a href="https://twitter.com/erthylol">Erthy</a></strong> 
+                            Signature creator itself was written by <strong><a href="https://twitter.com/erthylol">Erthy</a></strong>
                             (<a href="http://www.lolking.net/summoner/eune/26174422">Erthainel</a>@EUNE). Web interface design by <strong><a href="<?php print htmlspecialchars('mailto:ondrian.t[at]gmail[dot]com');?>">Ondrian</a></strong>.<br>
                             Others: interface by <strong>Sun</strong>, props to <strong>[zG]Woods</strong>, champion and skin numbers by <strong>Hobbesclone</strong>, <strong>Viitrexx</strong> and <strong>Carlxz</strong>.<br>
                             <br>The LoL Signature Generator isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
                             <br>
-                            <p style="color:gray;">DJ4pw1ue4qD84QN5ZeG7hvL8YZEqHHynNW<br/>give doge? many thanks</p>  
+                            <p style="color:gray;">DJ4pw1ue4qD84QN5ZeG7hvL8YZEqHHynNW<br/>give doge? many thanks</p>
                         </div>
                     </div>
                 </div>
