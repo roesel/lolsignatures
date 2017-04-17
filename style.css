@@ -50,7 +50,7 @@ body {
     color: rgb(45, 136, 45);
     text-shadow: rgba(200, 200, 200, 0.5) 1px 1px 1px;
     
-    display: none;
+    /*display: none;*/
 }
 
 #background-center {

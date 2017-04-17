@@ -154,8 +154,8 @@ $region_array = array(
         <div class="warning top negative">
             <strong>WARNING:</strong> This is a test warning! (negative)
         </div>
-        <div class="warning top positive ">
-            <strong>WARNING:</strong> This is a test warning! (positive)
+        <div class="warning top positive">
+            <strong>ATTENTION:</strong> I am looking for help with this project. Minimal skills required. More details <a href="https://www.reddit.com/r/leagueoflegends/comments/65wl6e/lol_forumteamspeak_signature_generator_help/">at this reddit thread</a>.
         </div>
         <div id="background-image-top">
             <div id="background-top">
