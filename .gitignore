@@ -3,3 +3,4 @@ secrets/*.secret.php
 *_cache/*.png
 /nbproject/private/
 /nbproject/
+\.htaccess

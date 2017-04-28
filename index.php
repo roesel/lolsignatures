@@ -39,15 +39,17 @@ if (isset($_POST['sub']) &&
 }
 
 $region_array = array(
-    'na' => 'NA',
-    'euw' => 'EUW',
-    'eune' => 'EUNE',
-    'oce' => 'OCE',
-    'las' => 'LAS',
-    'lan' => 'LAN',
-    'br' => 'BR',
-    'tr' => 'TUR',
-    'ru' => 'RU'
+    'na1' => 'NA',
+    'euw1' => 'EUW',
+    'eun1' => 'EUNE',
+    'oc1' => 'OCE',
+    'la2' => 'LAS',
+    'la1' => 'LAN',
+    'jp1' => 'JP,',
+    'br1' => 'BR',
+    'tr1' => 'TUR',
+    'ru' => 'RU',
+    'kr' => 'KR',
 );
 ?>
 
@@ -82,7 +84,7 @@ $region_array = array(
 	  })();
 	</script>
 	<!-- End Piwik Code -->
-		
+
     </head>
     <body>
         <script type="text/javascript">
