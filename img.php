@@ -3,6 +3,7 @@ header('Content-type: text/html; charset=utf-8');
 mb_internal_encoding("UTF-8");
 include_once("curl_stuff.php");
 include_once("api_stuff.php");
+include_once("image_stuff.php");
 include_once("secrets/const.secret.php");
 $debug = False;
 $sigs_cache_location = "sigs_cache/";  // Move to const
@@ -180,7 +181,6 @@ if ($champnum === 0) {
         // Stat_back was merged into mask, we won't need it anymore
         imagedestroy($lolsigs_box);
 
-        // TODO move BOX and region TEXT around + depending on plat/gold/master/... medals.
         // Prepare rectangle for region
         $region_box = imagecreatetruecolor(10, 10);
         $transparent_black = imagecolorallocatealpha($region_box, 0, 0, 0, 55);
@@ -189,7 +189,7 @@ if ($champnum === 0) {
         imagealphablending($region_box, 0);
         imagesavealpha($region_box, 1);
         // Copy square with stats onto the image
-        imagecopyresampled($mask, $region_box, $width*0.065, $height*0.02, 0, 0, $width*0.063,$height*(0.15), 10, 10);
+        imagecopyresampled($mask, $region_box, $width*0.065, $height*0.03, 0, 0, $width*0.063,$height*(0.15), 10, 10);
         // Stat_back was merged into mask, we won't need it anymore
         imagedestroy($region_box);
 
@@ -213,7 +213,8 @@ if (file_exists($local_path_meds)) {
 
 imagealphablending($medal, 0);
 imagesavealpha($medal, 1);
-imagecopyresampled($mask, $medal, 7, 2, 20, 20,$height,$height, 162, 162);
+$medal_offset = get_medal_offset(strtolower($r['tier']));
+imagecopyresampled($mask, $medal, 7, 2+$medal_offset, 20, 20,$height,$height, 162, 162);
 imagedestroy($medal);
 
 /* Putting letter in image ------------------------------------------------ */
@@ -227,6 +228,7 @@ $font_big = 'fonts/GFSNeohellenic.ttf';
 $font_tahoma = 'fonts/tahoma.ttf';
 
 $name_margin = 0;
+
 // Adding 'lolsigs.com' text
 imagettftext($mask, 8, 0, $width*(0.565)+1, $height*0.148+1, $black, $font_tahoma, "LoLsigs.com");
 imagettftext($mask, 8, 0, $width*(0.565), $height*0.148, $white, $font_tahoma, "LoLsigs.com");
@@ -245,6 +247,18 @@ imagettftext($mask, 17, 0, $height*(0.75), $height*(0.8), $white, $font, $r['ran
 imagettftext($mask, 16, 0, $height*(1.1)+$name_margin, 23, $white, $font_big, $name); // name of the player
 imagettftext($mask, 13, 0, $height*(1.1), 47, $white, $font_big, $division_rank_lp); // division tier
 imagettftext($mask, 13, 0, $height*(1.1)+1, 64, $white, $font_big, $r['league']); // league name
+
+// Retarded centering of region above medal
+$flipped_regions = array_flip(get_regions());
+$region_img = $flipped_regions[$region];
+for ($i=strlen($region_img);$i<4;$i++) {
+    if (strlen($region_img)==2) {
+        $region_img = $region_img." ";
+    }
+    $region_img = " ".$region_img;
+}
+imagettftext($mask, 7, 0, $width*(0.073)+1, 11+1, $black, $font_tahoma, strtoupper($region_img));
+imagettftext($mask, 7, 0, $width*(0.073), 11, $white, $font_tahoma, strtoupper($region_img));
 
 if (empty($j->Errors->IDToStats)) {
     $s = extract_simple_stats($j);
@@ -274,20 +288,10 @@ for ($i=0;$i<5;$i++) {
     imagettftext($mask, 8, 0, $width*(0.90), 20+$i*12, $white, $font_tahoma, $s[$i][1]);
 }
 
-// Retarded centering of region above medal
-$flipped_regions = array_flip(get_regions());
-$region_img = $flipped_regions[$region];
-for ($i=strlen($region_img);$i<4;$i++) {
-    if (strlen($region_img)==2) {
-        $region_img = $region_img." ";
-    }
-    $region_img = " ".$region_img;
+if (empty($j->Errors->IDToStats)) {
+    // Cache the created image
+    imagepng($mask, $file);
 }
-imagettftext($mask, 7, 0, $width*(0.073)+1, 10+1, $black, $font_tahoma, strtoupper($region_img));
-imagettftext($mask, 7, 0, $width*(0.073), 10, $white, $font_tahoma, strtoupper($region_img));
-
-// Cache the created image
-imagepng($mask, $file);
 
 if (!$debug) {
     Header("Content-type: image/png");                      // Server caching
