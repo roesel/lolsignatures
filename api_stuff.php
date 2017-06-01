@@ -19,6 +19,11 @@ function get_regions() {
     return $regions;
 }
 
+function flip_region($region) {
+    $flipped_regions = array_flip(get_regions());
+    return $flipped_regions[$region];
+}
+
 function translate_region($region) {
     $regions = get_regions();
 

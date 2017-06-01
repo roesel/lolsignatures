@@ -8,31 +8,105 @@ include_once("secrets/const.secret.php");
 $debug = False;
 $sigs_cache_location = "sigs_cache/";  // Move to const
 
+// Importing fonts
+$font = 'fonts/latin_becker_compress.ttf';
+$font_big = 'fonts/GFSNeohellenic.ttf';
+$font_tahoma = 'fonts/tahoma.ttf';
+
 /* Error handling ------------------------------------------------------------*/
 // TODO Errors into separate file
-// TODO Errors as images with dynamically generated error texts.
-function return_bad_request($message) {
-    // Header("Content-type: image/png");
-    // Header("Cache-Control: max-age=0");       // Browser caching
-    // readfile("img/bad_request.png");
-    print("Bad request: ".$message);
+
+function get_error_background() {
+    /* setting image size */
+    $width = 450;
+    $height = 80;
+    $ratio = $width/$height;
+    $error_background = 'img/error_background.png';
+    /* creating background and filling it with transparent color */
+    $mask = imagecreatetruecolor( $width, $height );
+    $transparent = imagecolorallocatealpha( $mask, 0, 0, 0, 127 );
+    imagefill( $mask, 0, 0, $transparent );
+    $back = imagecreatefrompng($error_background);
+    imagealphablending($back, 0);
+    imagesavealpha($back, 1);
+    // Merge mask and background
+    imagecopyresampled($mask, $back, 0, 0, 0, 0, $width, $height, $width, $height);
+    // Back was merged into mask, we won't need it anymore
+    imagedestroy($back);
+
+    return $mask;
+}
+
+function add_text_w_shadow($mask, $size, $smth, $x, $y, $font, $text) {
+    // Adding text
+    $black = imagecolorallocate($mask,0,0,0);
+    $white = imagecolorallocate($mask,255,255,255);
+    imagettftext($mask, $size, $smth, $x+1, $y+1, $black, $font, $text);
+    imagettftext($mask, $size, $smth, $x, $y, $white, $font, $text);
+    return $mask;
+}
+
+function add_lolsigs_com($mask) {
+    // Importing fonts
+    $font = 'fonts/latin_becker_compress.ttf';
+    $font_big = 'fonts/GFSNeohellenic.ttf';
+    $font_tahoma = 'fonts/tahoma.ttf';
+    $width = 450;
+    $height = 80;
+    $black = imagecolorallocate($mask,0,0,0);
+    $white = imagecolorallocate($mask,255,255,255);
+
+    // Prepare rectangle for lolsigs box
+    $lolsigs_box = imagecreatetruecolor(10, 10);
+    $transparent_black = imagecolorallocatealpha( $lolsigs_box, 0, 0, 0, 55);
+    imagefill($lolsigs_box, 0, 0, $transparent_black );
+    // Set proper opacities
+    imagealphablending($lolsigs_box, 0);
+    imagesavealpha($lolsigs_box, 1);
+    // Copy square with stats onto the image
+    imagecopyresampled($mask, $lolsigs_box, $width*0.555, $height*0, 0, 0, $width*0.155,$height*(0.22), 10, 10);
+    // Stat_back was merged into mask, we won't need it anymore
+    imagedestroy($lolsigs_box);
+
+    // Adding 'lolsigs.com' text
+    imagettftext($mask, 8, 0, $width*(0.565)+1, $height*0.148+1, $black, $font_tahoma, "LoLsigs.com");
+    imagettftext($mask, 8, 0, $width*(0.565), $height*0.148, $white, $font_tahoma, "LoLsigs.com");
+
+    return $mask;
+}
+
+function make_error_image($message, $code) {
+    $mask = get_error_background();
+
+    // Importing fonts
+    $font = 'fonts/latin_becker_compress.ttf';
+    $font_big = 'fonts/GFSNeohellenic.ttf';
+    $font_tahoma = 'fonts/tahoma.ttf';
+    $width = 450;
+    $height = 80;
+
+    add_text_w_shadow($mask, 10, 0, 8, 30, $font_tahoma, $message);
+    if ($code !== "") {
+        add_text_w_shadow($mask, 32, 0, 355, 55, $font_tahoma, $code);
+    }
+    $mask = add_lolsigs_com($mask);
+    //Serve image
+    Header("Content-type: image/png");                      // Server caching
+    Header("Cache-Control: max-age=0");        // Browser caching
+    imagepng($mask);
     exit();
+}
+
+function return_bad_request($message) {
+    make_error_image($message, "400");
 }
 
 function return_backend_error($message) {
-    // Header("Content-type: image/png");
-    // Header("Cache-Control: max-age=0");       // Browser caching
-    // readfile("img/backend_error.png");
-    print("Backend error: ".$message);
-    exit();
+    make_error_image($message, "go?");
 }
 
 function return_not_found($message) {
-    // Header("Content-type: image/png");
-    // Header("Cache-Control: max-age=0");       // Browser caching
-    // readfile("img/backend_error.png");
-    print($message);
-    exit();
+    make_error_image($message, "404");
 }
 
 function return_from_cache($file) {
@@ -82,9 +156,14 @@ if (isset($_GET["region"]) && isset($_GET["name"])){
 
 try {
     $json = get_data('http://localhost:9090/?summonername='.$name.'&region='.$region);
-    $j = json_decode($json);
+    if (!empty($json)) {
+        $j = json_decode($json);
+    } else {
+        return_backend_error("Backend not available/crashed. \nConsider conacting lolsigs.com admin.\nTry /r/erthainel or @ErthyLoL.");
+    }
+
 } catch (Exception $e) {
-    return_backend_error($e->getMessage());
+    return_backend_error("Backend error:\n".$e->getMessage());
 }
 
 if (empty($j->Errors->PlayerToID)) {
@@ -93,7 +172,7 @@ if (empty($j->Errors->PlayerToID)) {
     $name = $j->Summoner->name;
 } else {
     if ($j->Errors->PlayerToID=="404 Not Found") {
-        return_not_found("Player `".$name."` was not found in region `".strtoupper($region)."`.");
+        return_not_found("Player ".$name." \nwas not found in region ".strtoupper(flip_region($region)).".\nTry doublechecking spelling and region.");
     } else {
         return_not_found($j->Errors->PlayerToID);
     }
@@ -103,7 +182,7 @@ if (empty($j->Errors->IDToRanked)) {
     $r = extract_simple_ranked($j);
 } else {
     if ($j->Errors->IDToRanked=="Player doesn't seem ranked.") {
-        return_not_found("`".$name."` (".strtoupper($region).") was not found in Ranked Solo.\nAre you sure he/she is placed in current season?");
+        return_not_found("Player ".$name." \nfrom ".strtoupper(flip_region($region))." has no entries in Ranked.\nAre you sure he/she plays SoloQ?");
     } else {
         return_not_found($j->Errors->IDToRanked);
     }
@@ -217,15 +296,10 @@ $medal_offset = get_medal_offset(strtolower($r['tier']));
 imagecopyresampled($mask, $medal, 7, 2+$medal_offset, 20, 20,$height,$height, 162, 162);
 imagedestroy($medal);
 
-/* Putting letter in image ------------------------------------------------ */
+/* Putting letters in image ------------------------------------------------ */
 // Definition of colors
 $black = imagecolorallocate($mask,0,0,0);
 $white = imagecolorallocate($mask,255,255,255);
-
-// Importing fonts
-$font = 'fonts/latin_becker_compress.ttf';
-$font_big = 'fonts/GFSNeohellenic.ttf';
-$font_tahoma = 'fonts/tahoma.ttf';
 
 $name_margin = 0;
 
@@ -249,8 +323,7 @@ imagettftext($mask, 13, 0, $height*(1.1), 47, $white, $font_big, $division_rank_
 imagettftext($mask, 13, 0, $height*(1.1)+1, 64, $white, $font_big, $r['league']); // league name
 
 // Retarded centering of region above medal
-$flipped_regions = array_flip(get_regions());
-$region_img = $flipped_regions[$region];
+$region_img = flip_region($region);
 for ($i=strlen($region_img);$i<4;$i++) {
     if (strlen($region_img)==2) {
         $region_img = $region_img." ";
