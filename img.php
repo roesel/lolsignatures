@@ -109,6 +109,15 @@ function return_not_found($message) {
     make_error_image($message, "404");
 }
 
+function return_generic($message) {
+    if (is_numeric(substr($message,0,3))) {
+        $code = substr($message,0,3);
+    } else {
+        $code = "";
+    }
+    make_error_image($message, $code);
+}
+
 function return_from_cache($file) {
     Header("Content-type: image/png");
     Header("Cache-Control: max-age=".BROWSER_CACHE);       // Browser caching
@@ -161,7 +170,6 @@ try {
     } else {
         return_backend_error("Backend not available/crashed. \nConsider conacting lolsigs.com admin.\nTry /r/erthainel or @ErthyLoL.");
     }
-
 } catch (Exception $e) {
     return_backend_error("Backend error:\n".$e->getMessage());
 }
@@ -174,7 +182,7 @@ if (empty($j->Errors->PlayerToID)) {
     if ($j->Errors->PlayerToID=="404 Not Found") {
         return_not_found("Player ".$name." \nwas not found in region ".strtoupper(flip_region($region)).".\nTry doublechecking spelling and region.");
     } else {
-        return_not_found($j->Errors->PlayerToID);
+        return_generic($j->Errors->PlayerToID);
     }
 }
 
@@ -184,7 +192,7 @@ if (empty($j->Errors->IDToRanked)) {
     if ($j->Errors->IDToRanked=="Player doesn't seem ranked.") {
         return_not_found("Player ".$name." \nfrom ".strtoupper(flip_region($region))." has no entries in Ranked.\nAre you sure he/she plays SoloQ?");
     } else {
-        return_not_found($j->Errors->IDToRanked);
+        return_generic($j->Errors->IDToRanked);
     }
 }
 
